@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <PackageId>Kinevor.Platform.Domain</PackageId>
+    <Description>Shared domain kernel for Kinevor feature modules: entities, results, value objects, enums and specifications.</Description>
+    <PackageTags>kinevor;platform;domain;ddd</PackageTags>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageProjectUrl>https://github.com/SoftwareDeveloper98/kinevor-platform</PackageProjectUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+</Project>

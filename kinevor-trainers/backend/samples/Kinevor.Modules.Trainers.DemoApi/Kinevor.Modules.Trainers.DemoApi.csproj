@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <IsPackable>false</IsPackable>
+    <RollForward>LatestMajor</RollForward>
+    <RootNamespace>Kinevor.Modules.Trainers.DemoApi</RootNamespace>
+    <UserSecretsId>kinevor-trainers-demo-api</UserSecretsId>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="9.0.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="7.2.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Kinevor.Modules.Trainers.EntityFrameworkCore\Kinevor.Modules.Trainers.EntityFrameworkCore.csproj" />
+    <ProjectReference Include="..\..\src\Kinevor.Modules.Trainers\Kinevor.Modules.Trainers.csproj" />
+  </ItemGroup>
+</Project>

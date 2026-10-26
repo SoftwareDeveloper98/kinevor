@@ -1,0 +1,35 @@
+{
+  "name": "@softwaredeveloper98/kinevor-trainers-web",
+  "version": "0.1.0",
+  "description": "Trainer directory UI for Kinevor: staff list, trainer profile and public directory components.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SoftwareDeveloper98/kinevor-trainers.git"
+  },
+  "keywords": [
+    "kinevor",
+    "angular",
+    "trainers",
+    "fitness"
+  ],
+  "peerDependencies": {
+    "@angular/common": "^21.0.0",
+    "@angular/core": "^21.0.0",
+    "@angular/forms": "^21.0.0",
+    "@angular/material": "^21.0.0",
+    "@angular/router": "^21.0.0",
+    "@softwaredeveloper98/kinevor-platform-web": "^0.1.0",
+    "rxjs": "^7.8.0"
+  },
+  "sideEffects": false,
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "author": "George Victor Kamal",
+  "homepage": "https://github.com/SoftwareDeveloper98/kinevor-trainers#readme",
+  "bugs": {
+    "url": "https://github.com/SoftwareDeveloper98/kinevor-trainers/issues"
+  }
+}

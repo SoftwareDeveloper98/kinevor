@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <PackageId>Kinevor.Modules.PublicSite</PackageId>
+    <Description>Public website content, schedule and lead-capture module for Kinevor.</Description>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <NoWarn>$(NoWarn);CS1591</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    <None Include="README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Kinevor.Platform.Api" Version="0.1.0" />
+    <PackageReference Include="Kinevor.Platform.Application" Version="0.1.0" />
+    <PackageReference Include="Kinevor.Platform.Domain" Version="0.1.0" />
+    <PackageReference Include="MediatR" Version="12.4.1" />
+  </ItemGroup>
+</Project>

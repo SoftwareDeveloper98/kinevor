@@ -1,0 +1,12 @@
+<Solution>
+  <Folder Name="/samples/">
+    <Project Path="samples/Kinevor.Modules.PublicSite.DemoApi/Kinevor.Modules.PublicSite.DemoApi.csproj" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src/Kinevor.Modules.PublicSite.EntityFrameworkCore/Kinevor.Modules.PublicSite.EntityFrameworkCore.csproj" />
+    <Project Path="src/Kinevor.Modules.PublicSite/Kinevor.Modules.PublicSite.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Kinevor.Modules.PublicSite.Tests/Kinevor.Modules.PublicSite.Tests.csproj" />
+  </Folder>
+</Solution>

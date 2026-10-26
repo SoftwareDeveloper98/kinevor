@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <PackageId>Kinevor.Platform.Application</PackageId>
+    <Description>Shared application contracts for Kinevor feature modules: repositories, unit of work, current user, paging and exceptions.</Description>
+    <PackageTags>kinevor;platform;application;cqrs</PackageTags>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageProjectUrl>https://github.com/SoftwareDeveloper98/kinevor-platform</PackageProjectUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="12.4.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Kinevor.Platform.Domain\Kinevor.Platform.Domain.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+</Project>

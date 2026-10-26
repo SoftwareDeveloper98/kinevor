@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <IsPackable>false</IsPackable>
+    <RollForward>LatestMajor</RollForward>
+    <RootNamespace>Kinevor.Modules.Notifications.DemoApi</RootNamespace>
+    <UserSecretsId>kinevor-notifications-demo-api</UserSecretsId>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="9.0.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="7.2.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Kinevor.Modules.Notifications.EntityFrameworkCore\Kinevor.Modules.Notifications.EntityFrameworkCore.csproj" />
+    <ProjectReference Include="..\..\src\Kinevor.Modules.Notifications\Kinevor.Modules.Notifications.csproj" />
+  </ItemGroup>
+</Project>

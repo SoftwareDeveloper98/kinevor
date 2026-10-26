@@ -1,0 +1,213 @@
+<section class="page" aria-labelledby="occupancy-title">
+  <header class="page-header">
+    <div>
+      <p class="eyebrow">Operations</p>
+      <h1 id="occupancy-title">Live occupancy</h1>
+      <p class="lede">
+        A real-time view of safe capacity, open visits and today's front-desk traffic.
+      </p>
+    </div>
+
+    <div class="header-actions">
+      <label class="branch-field">
+        <span class="field-label">Club</span>
+        <span class="select-shell">
+          <mat-icon aria-hidden="true">location_on</mat-icon>
+          <select
+            aria-label="Club"
+            [value]="facade.branchId() ?? ''"
+            (change)="onBranchChange($event)"
+          >
+            @for (branch of facade.branches(); track branch.id) {
+              <option [value]="branch.id" [selected]="branch.id === facade.branchId()">
+                {{ branch.name }}
+              </option>
+            }
+          </select>
+        </span>
+      </label>
+      <button
+        type="button"
+        mat-stroked-button
+        class="refresh-button"
+        [disabled]="facade.loading()"
+        (click)="refresh()"
+      >
+        <mat-icon>refresh</mat-icon>
+        Refresh
+      </button>
+    </div>
+  </header>
+
+  @if (facade.error(); as error) {
+    <div class="alert" role="alert">
+      <mat-icon aria-hidden="true">error_outline</mat-icon>
+      <span>{{ error }}</span>
+      <button type="button" aria-label="Dismiss error" (click)="facade.clearError()">
+        <mat-icon aria-hidden="true">close</mat-icon>
+      </button>
+    </div>
+  }
+
+  @if (facade.notice(); as notice) {
+    <div class="alert success" role="status">
+      <mat-icon aria-hidden="true">check_circle</mat-icon>
+      <span>{{ notice }}</span>
+      <button type="button" aria-label="Dismiss notice" (click)="facade.clearNotice()">
+        <mat-icon aria-hidden="true">close</mat-icon>
+      </button>
+    </div>
+  }
+
+  @if (facade.occupancy(); as occupancy) {
+    <div class="overview-grid">
+      <article class="panel gauge-card">
+        <div
+          class="gauge-ring"
+          role="img"
+          [attr.aria-label]="occupancy.utilizationPercent + ' percent occupied'"
+          [style.--gauge-value]="occupancy.utilizationPercent + '%'"
+          [style.--gauge-color]="gaugeColor()"
+        >
+          <div class="gauge-center">
+            <strong>{{ occupancy.utilizationPercent }}<small>%</small></strong>
+            <span>occupied</span>
+          </div>
+        </div>
+
+        <div class="gauge-copy">
+          <span
+            class="status-chip"
+            [class.status-busy]="occupancy.status === 'Busy'"
+            [class.status-warning]="occupancy.status === 'NearlyFull'"
+            [class.status-danger]="occupancy.status === 'Full'"
+          >
+            {{ occupancy.status }}
+          </span>
+          <h2>{{ occupancy.occupied }} of {{ occupancy.capacity }}</h2>
+          <p>members inside at {{ occupancy.branchName }}</p>
+          <div class="capacity-bar" aria-hidden="true">
+            <span [style.width]="utilizationWidth(occupancy.utilizationPercent)"></span>
+          </div>
+          <div class="capacity-legend">
+            <span>{{ occupancy.available }} safe spaces available</span>
+            <span>{{ occupancy.branchCode }}</span>
+          </div>
+        </div>
+      </article>
+
+      <div class="today-grid">
+        <article class="stat-card">
+          <div class="stat-top">
+            <span class="stat-icon"><mat-icon aria-hidden="true">how_to_reg</mat-icon></span>
+            <span class="stat-label">Check-ins today</span>
+          </div>
+          <strong class="stat-value">{{ facade.stats()?.totalCheckIns ?? '—' }}</strong>
+          <p>{{ facade.stats()?.uniqueMembers ?? '—' }} unique members</p>
+        </article>
+
+        <article class="stat-card">
+          <div class="stat-top">
+            <span class="stat-icon"><mat-icon aria-hidden="true">task_alt</mat-icon></span>
+            <span class="stat-label">Completed</span>
+          </div>
+          <strong class="stat-value">{{ facade.stats()?.completedVisits ?? '—' }}</strong>
+          <p>visits closed today</p>
+        </article>
+
+        <article class="stat-card">
+          <div class="stat-top">
+            <span class="stat-icon"><mat-icon aria-hidden="true">timer</mat-icon></span>
+            <span class="stat-label">Average visit</span>
+          </div>
+          <strong class="stat-value">{{ facade.stats()?.averageDurationMinutes ?? '—' }}<small>m</small></strong>
+          <p>across completed visits</p>
+        </article>
+
+        <article class="stat-card">
+          <div class="stat-top">
+            <span class="stat-icon"><mat-icon aria-hidden="true">bolt</mat-icon></span>
+            <span class="stat-label">Peak hour</span>
+          </div>
+          <strong class="stat-value">{{ formatHour(facade.stats()?.peakHour) }}</strong>
+          <p>{{ facade.stats()?.peakHourCheckIns ?? '—' }} arrivals</p>
+        </article>
+      </div>
+    </div>
+
+    <section class="panel visits-panel" aria-labelledby="open-visits-title">
+      <div class="panel-heading">
+        <div>
+          <h2 id="open-visits-title">Open visits</h2>
+          <p>Members currently checked in at {{ occupancy.branchName }}</p>
+        </div>
+        <div class="heading-meta">
+          <span class="count-pill">{{ occupancy.occupied }} inside</span>
+          @if (facade.refreshedAt(); as refreshedAt) {
+            <span class="refreshed">Updated {{ refreshedAt.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' }) }}</span>
+          }
+        </div>
+      </div>
+
+      @if (facade.loading()) {
+        <div class="loading-block"><mat-spinner diameter="30"></mat-spinner></div>
+      } @else if (facade.openVisits().length === 0) {
+        <div class="empty-state">
+          <mat-icon aria-hidden="true">meeting_room</mat-icon>
+          <strong>No open visits</strong>
+          <span>New front-desk check-ins will appear here immediately.</span>
+        </div>
+      } @else {
+        <div class="visit-table-wrap">
+          <table class="visit-table">
+            <thead>
+              <tr>
+                <th scope="col">Member</th>
+                <th scope="col">Member no.</th>
+                <th scope="col">Checked in</th>
+                <th scope="col">Duration</th>
+                <th scope="col">Source</th>
+                <th scope="col"><span class="sr-only">Actions</span></th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (visit of facade.openVisits(); track visit.id) {
+                <tr>
+                  <td>
+                    <div class="member-cell">
+                      <span class="avatar">{{ initials(visit.memberName) }}</span>
+                      <span>
+                        <strong>{{ visit.memberName }}</strong>
+                        <small>Access {{ visit.accessCode }}</small>
+                      </span>
+                    </div>
+                  </td>
+                  <td class="mono">{{ visit.memberNumber }}</td>
+                  <td>{{ formatDate(visit.checkedInAt) }}</td>
+                  <td>
+                    <span class="duration-pill">{{ formatDuration(visit.durationMinutes) }}</span>
+                  </td>
+                  <td><span class="source-chip">{{ visit.source }}</span></td>
+                  <td class="actions">
+                    <button
+                      type="button"
+                      mat-stroked-button
+                      class="checkout-button"
+                      [disabled]="facade.actionLoading()"
+                      (click)="checkOut(visit.id)"
+                    >
+                      <mat-icon>logout</mat-icon>
+                      Check out
+                    </button>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      }
+    </section>
+  } @else if (facade.loading()) {
+    <div class="loading-block full-page"><mat-spinner diameter="38"></mat-spinner></div>
+  }
+</section>

@@ -1,0 +1,12 @@
+<Solution>
+  <Folder Name="/samples/">
+    <Project Path="samples/Kinevor.Modules.CheckInsAccess.DemoApi/Kinevor.Modules.CheckInsAccess.DemoApi.csproj" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src/Kinevor.Modules.CheckInsAccess.EntityFrameworkCore/Kinevor.Modules.CheckInsAccess.EntityFrameworkCore.csproj" />
+    <Project Path="src/Kinevor.Modules.CheckInsAccess/Kinevor.Modules.CheckInsAccess.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Kinevor.Modules.CheckInsAccess.Tests/Kinevor.Modules.CheckInsAccess.Tests.csproj" />
+  </Folder>
+</Solution>

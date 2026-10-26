@@ -1,0 +1,12 @@
+<Solution>
+  <Folder Name="/samples/">
+    <Project Path="samples/Kinevor.Modules.IdentityAccess.DemoApi/Kinevor.Modules.IdentityAccess.DemoApi.csproj" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src/Kinevor.Modules.IdentityAccess.EntityFrameworkCore/Kinevor.Modules.IdentityAccess.EntityFrameworkCore.csproj" />
+    <Project Path="src/Kinevor.Modules.IdentityAccess/Kinevor.Modules.IdentityAccess.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Kinevor.Modules.IdentityAccess.Tests/Kinevor.Modules.IdentityAccess.Tests.csproj" />
+  </Folder>
+</Solution>

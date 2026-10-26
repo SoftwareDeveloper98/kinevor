@@ -1,0 +1,184 @@
+<section class="page" aria-labelledby="history-title">
+  <header class="page-header">
+    <div>
+      <p class="eyebrow">Access log</p>
+      <h1 id="history-title">Visit history</h1>
+      <p class="lede">
+        Every member entry and exit, with club, source and live visit state in one place.
+      </p>
+    </div>
+
+    <div class="header-actions">
+      <span class="retention"><mat-icon aria-hidden="true">shield</mat-icon>Immutable audit trail</span>
+      <button type="button" mat-stroked-button class="refresh-button" [disabled]="facade.loading()" (click)="refresh()">
+        <mat-icon>refresh</mat-icon>
+        Refresh
+      </button>
+    </div>
+  </header>
+
+  @if (facade.error(); as error) {
+    <div class="alert" role="alert">
+      <mat-icon aria-hidden="true">error_outline</mat-icon>
+      <span>{{ error }}</span>
+      <button type="button" aria-label="Dismiss error" (click)="facade.clearError()">
+        <mat-icon aria-hidden="true">close</mat-icon>
+      </button>
+    </div>
+  }
+
+  <section class="panel" aria-label="Visit history">
+    <div class="filter-bar">
+      <label class="search-field">
+        <mat-icon aria-hidden="true">search</mat-icon>
+        <input
+          type="search"
+          placeholder="Search member or member number"
+          aria-label="Search visit history"
+          (input)="onSearch($event)"
+        />
+      </label>
+
+      <div class="status-filter" role="group" aria-label="Visit status">
+        <button
+          type="button"
+          [class.is-active]="facade.filters().status === ''"
+          (click)="setStatus('')"
+        >
+          All
+        </button>
+        <button
+          type="button"
+          [class.is-active]="facade.filters().status === 'open'"
+          (click)="setStatus('open')"
+        >
+          Inside
+        </button>
+        <button
+          type="button"
+          [class.is-active]="facade.filters().status === 'closed'"
+          (click)="setStatus('closed')"
+        >
+          Completed
+        </button>
+      </div>
+
+      <label class="branch-filter">
+        <mat-icon aria-hidden="true">location_on</mat-icon>
+        <select aria-label="Filter by club" [value]="facade.filters().branchId" (change)="onBranchChange($event)">
+          <option value="">All clubs</option>
+          @for (branch of facade.branches(); track branch.id) {
+            <option [value]="branch.id" [selected]="branch.id === facade.filters().branchId">
+              {{ branch.name }}
+            </option>
+          }
+        </select>
+      </label>
+
+      @if (facade.hasFilters()) {
+        <button type="button" mat-button class="clear-button" (click)="clearFilters()">Clear</button>
+      }
+    </div>
+
+    <div class="table-heading">
+      <div>
+        <h2>All visits</h2>
+        <p>
+          {{ facade.history()?.totalCount ?? 0 }} visits
+          @if (facade.hasFilters()) {
+            matching your filters
+          }
+        </p>
+      </div>
+      <span class="live-note"><span></span>Live access state</span>
+    </div>
+
+    @if (facade.loading() && !facade.history()) {
+      <div class="loading-block"><mat-spinner diameter="32"></mat-spinner></div>
+    } @else if ((facade.history()?.items?.length ?? 0) === 0) {
+      <div class="empty-state">
+        <mat-icon aria-hidden="true">history</mat-icon>
+        <strong>No visits found</strong>
+        <span>Adjust the search or filters to widen the result set.</span>
+      </div>
+    } @else {
+      <div class="visit-table-wrap" [attr.aria-busy]="facade.loading()">
+        <table class="visit-table">
+          <thead>
+            <tr>
+              <th scope="col">Member</th>
+              <th scope="col">Club</th>
+              <th scope="col">Checked in</th>
+              <th scope="col">Checked out</th>
+              <th scope="col">Duration</th>
+              <th scope="col">Source</th>
+              <th scope="col">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (visit of facade.history()?.items ?? []; track visit.id) {
+              <tr>
+                <td>
+                  <div class="member-cell">
+                    <span class="avatar" [class.avatar-open]="visit.isOpen">{{ initials(visit.memberName) }}</span>
+                    <span>
+                      <strong>{{ visit.memberName }}</strong>
+                      <small>{{ visit.memberNumber }}</small>
+                    </span>
+                  </div>
+                </td>
+                <td>
+                  <span class="club-name">{{ visit.branchName }}</span>
+                  <small class="access-code">{{ visit.accessCode }}</small>
+                </td>
+                <td>{{ formatDate(visit.checkedInAt) }}</td>
+                <td [class.muted]="!visit.checkedOutAt">{{ visit.checkedOutAt ? formatDate(visit.checkedOutAt) : 'Still inside' }}</td>
+                <td>
+                  <span class="duration">{{ formatDuration(visit.durationMinutes) }}</span>
+                </td>
+                <td>
+                  <span class="source-chip" [class.source-app]="visit.source === 'MemberApp'">
+                    <mat-icon aria-hidden="true">{{ visit.source === 'MemberApp' ? 'smartphone' : 'point_of_sale' }}</mat-icon>
+                    {{ visit.source === 'MemberApp' ? 'Member app' : 'Front desk' }}
+                  </span>
+                </td>
+                <td>
+                  @if (visit.isOpen) {
+                    <span class="status-pill status-open"><span></span>Inside</span>
+                  } @else {
+                    <span class="status-pill status-closed">Completed</span>
+                  }
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+
+      <footer class="table-footer">
+        <span>Showing {{ rangeStart() }}–{{ rangeEnd() }} of {{ facade.history()?.totalCount ?? 0 }}</span>
+        <div class="pager">
+          <button
+            type="button"
+            mat-icon-button
+            aria-label="Previous page"
+            [disabled]="facade.page() <= 1 || facade.loading()"
+            (click)="goToPage(facade.page() - 1)"
+          >
+            <mat-icon>arrow_back</mat-icon>
+          </button>
+          <span>Page {{ facade.page() }} of {{ facade.pageCount() }}</span>
+          <button
+            type="button"
+            mat-icon-button
+            aria-label="Next page"
+            [disabled]="facade.page() >= facade.pageCount() || facade.loading()"
+            (click)="goToPage(facade.page() + 1)"
+          >
+            <mat-icon>arrow_forward</mat-icon>
+          </button>
+        </div>
+      </footer>
+    }
+  </section>
+</section>

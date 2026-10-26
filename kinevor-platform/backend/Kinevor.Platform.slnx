@@ -1,0 +1,10 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Kinevor.Platform.Api/Kinevor.Platform.Api.csproj" />
+    <Project Path="src/Kinevor.Platform.Application/Kinevor.Platform.Application.csproj" />
+    <Project Path="src/Kinevor.Platform.Domain/Kinevor.Platform.Domain.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Kinevor.Platform.Tests/Kinevor.Platform.Tests.csproj" />
+  </Folder>
+</Solution>

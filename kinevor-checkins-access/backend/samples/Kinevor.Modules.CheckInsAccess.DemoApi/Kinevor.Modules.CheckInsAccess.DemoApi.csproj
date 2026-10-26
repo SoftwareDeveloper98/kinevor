@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <IsPackable>false</IsPackable>
+    <RollForward>LatestMajor</RollForward>
+    <RootNamespace>Kinevor.Modules.CheckInsAccess.DemoApi</RootNamespace>
+    <UserSecretsId>kinevor-checkins-access-demo-api</UserSecretsId>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="9.0.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="7.2.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Kinevor.Modules.CheckInsAccess.EntityFrameworkCore\Kinevor.Modules.CheckInsAccess.EntityFrameworkCore.csproj" />
+    <ProjectReference Include="..\..\src\Kinevor.Modules.CheckInsAccess\Kinevor.Modules.CheckInsAccess.csproj" />
+  </ItemGroup>
+</Project>

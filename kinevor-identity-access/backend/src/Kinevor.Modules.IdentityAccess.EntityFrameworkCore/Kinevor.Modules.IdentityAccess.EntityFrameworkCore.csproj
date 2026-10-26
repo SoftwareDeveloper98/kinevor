@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <PackageId>Kinevor.Modules.IdentityAccess.EntityFrameworkCore</PackageId>
+    <Description>EF Core persistence for the Kinevor identity module: account and refresh-token mappings and repositories.</Description>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="\" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="9.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.0" />
+    <ProjectReference Include="..\Kinevor.Modules.IdentityAccess\Kinevor.Modules.IdentityAccess.csproj" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,354 @@
+<section class="page" aria-labelledby="front-desk-title">
+  <header class="page-header">
+    <div class="title-block">
+      <p class="eyebrow">Front desk</p>
+      <h1 id="front-desk-title">Member check-in</h1>
+      <p class="lede">
+        Search the member list, review live access eligibility and record entry across the club.
+      </p>
+    </div>
+
+    <div class="header-actions">
+      <label class="branch-field">
+        <span class="field-label">Active club</span>
+        <span class="select-shell">
+          <mat-icon aria-hidden="true">location_on</mat-icon>
+          <select
+            aria-label="Active club"
+            [value]="facade.branchId() ?? ''"
+            (change)="onBranchChange($event)"
+          >
+            @for (branch of facade.branches(); track branch.id) {
+              <option [value]="branch.id" [selected]="branch.id === facade.branchId()">
+                {{ branch.name }}
+              </option>
+            }
+          </select>
+        </span>
+      </label>
+      <span class="live-pill"><span class="live-dot"></span>Live desk</span>
+    </div>
+  </header>
+
+  @if (facade.error(); as error) {
+    <div class="alert alert-error" role="alert">
+      <mat-icon aria-hidden="true">error_outline</mat-icon>
+      <span>{{ error }}</span>
+      <button type="button" class="alert-close" aria-label="Dismiss error" (click)="facade.clearError()">
+        <mat-icon aria-hidden="true">close</mat-icon>
+      </button>
+    </div>
+  }
+
+  @if (facade.notice(); as notice) {
+    <div class="alert alert-success" role="status">
+      <mat-icon aria-hidden="true">check_circle</mat-icon>
+      <span>{{ notice }}</span>
+      <button type="button" class="alert-close" aria-label="Dismiss notice" (click)="facade.clearNotice()">
+        <mat-icon aria-hidden="true">close</mat-icon>
+      </button>
+    </div>
+  }
+
+  <div class="stat-grid" aria-label="Today at a glance">
+    <article class="stat-card stat-card-accent">
+      <div class="stat-top">
+        <span class="stat-icon"><mat-icon aria-hidden="true">groups</mat-icon></span>
+        <span class="stat-label">Inside now</span>
+      </div>
+      <div class="stat-value-row">
+        <strong class="stat-value">{{ facade.occupancy()?.occupied ?? '—' }}</strong>
+        <span class="stat-suffix">/ {{ facade.occupancy()?.capacity ?? '—' }} capacity</span>
+      </div>
+      <div class="meter" aria-hidden="true">
+        <span [style.width]="utilizationWidth(facade.occupancy()?.utilizationPercent)"></span>
+      </div>
+    </article>
+
+    <article class="stat-card">
+      <div class="stat-top">
+        <span class="stat-icon"><mat-icon aria-hidden="true">how_to_reg</mat-icon></span>
+        <span class="stat-label">Visits today</span>
+      </div>
+      <div class="stat-value-row">
+        <strong class="stat-value">{{ facade.stats()?.totalCheckIns ?? '—' }}</strong>
+        <span class="stat-suffix">{{ facade.stats()?.uniqueMembers ?? '—' }} unique members</span>
+      </div>
+      <p class="stat-foot">Peak at {{ formatHour(facade.stats()?.peakHour) }}</p>
+    </article>
+
+    <article class="stat-card">
+      <div class="stat-top">
+        <span class="stat-icon"><mat-icon aria-hidden="true">event_seat</mat-icon></span>
+        <span class="stat-label">Available</span>
+      </div>
+      <div class="stat-value-row">
+        <strong class="stat-value">{{ facade.occupancy()?.available ?? '—' }}</strong>
+        <span class="stat-suffix">safe spaces</span>
+      </div>
+      <p class="stat-foot">{{ facade.occupancy()?.status ?? 'Awaiting snapshot' }}</p>
+    </article>
+
+    <article class="stat-card">
+      <div class="stat-top">
+        <span class="stat-icon"><mat-icon aria-hidden="true">schedule</mat-icon></span>
+        <span class="stat-label">Avg. visit</span>
+      </div>
+      <div class="stat-value-row">
+        <strong class="stat-value">{{ facade.stats()?.averageDurationMinutes ?? '—' }}<small>m</small></strong>
+        <span class="stat-suffix">{{ facade.stats()?.completedVisits ?? '—' }} completed</span>
+      </div>
+      <p class="stat-foot">{{ facade.branch()?.city ?? 'Select a club' }}</p>
+    </article>
+  </div>
+
+  <div class="workspace">
+    <section class="panel members-panel" aria-labelledby="members-title">
+      <div class="panel-heading">
+        <div>
+          <h2 id="members-title">Members</h2>
+          <p>{{ facade.memberTotal() }} access profiles</p>
+        </div>
+        <span class="panel-count">{{ facade.memberPage() }} / {{ facade.memberPageCount() }}</span>
+      </div>
+
+      <label class="search-field">
+        <mat-icon aria-hidden="true">search</mat-icon>
+        <input
+          type="search"
+          placeholder="Name, member number or e-mail"
+          aria-label="Search members"
+          (input)="onSearch($event)"
+        />
+      </label>
+
+      <div class="member-list" [attr.aria-busy]="facade.loading()">
+        @if (facade.loading() && facade.members().length === 0) {
+          <div class="loading-block"><mat-spinner diameter="28"></mat-spinner></div>
+        } @else if (facade.members().length === 0) {
+          <div class="empty-state">
+            <mat-icon aria-hidden="true">person_search</mat-icon>
+            <strong>No members found</strong>
+            <span>Try a different name or member number.</span>
+          </div>
+        } @else {
+          @for (member of facade.members(); track member.id) {
+            <button
+              type="button"
+              class="member-row"
+              [class.is-selected]="facade.selectedMemberId() === member.id"
+              (click)="selectMember(member.id)"
+            >
+              <span class="avatar" [class.avatar-inside]="member.isInside">{{ initials(member.fullName) }}</span>
+              <span class="member-copy">
+                <span class="member-name">{{ member.fullName }}</span>
+                <span class="member-meta">{{ member.memberNumber }} · {{ member.membershipPlan }}</span>
+              </span>
+              <span class="member-state">
+                @if (member.isInside) {
+                  <span class="chip chip-inside">Inside</span>
+                } @else if (member.status !== 'Active') {
+                  <span class="chip chip-muted">{{ member.status }}</span>
+                } @else {
+                  <span class="chip chip-ready">Ready</span>
+                }
+                <mat-icon aria-hidden="true">chevron_right</mat-icon>
+              </span>
+            </button>
+          }
+        }
+      </div>
+
+      <div class="pager">
+        <button
+          type="button"
+          mat-icon-button
+          aria-label="Previous members"
+          [disabled]="facade.memberPage() <= 1 || facade.loading()"
+          (click)="movePage(-1)"
+        >
+          <mat-icon>arrow_back</mat-icon>
+        </button>
+        <span>Showing {{ facade.members().length }} of {{ facade.memberTotal() }}</span>
+        <button
+          type="button"
+          mat-icon-button
+          aria-label="Next members"
+          [disabled]="facade.memberPage() >= facade.memberPageCount() || facade.loading()"
+          (click)="movePage(1)"
+        >
+          <mat-icon>arrow_forward</mat-icon>
+        </button>
+      </div>
+    </section>
+
+    <div class="detail-stack">
+      <section class="panel eligibility-panel" aria-labelledby="eligibility-title">
+        <div class="panel-heading">
+          <div>
+            <h2 id="eligibility-title">Access decision</h2>
+            <p>Live membership and club rules</p>
+          </div>
+          @if (facade.eligibility()) {
+            <button
+              type="button"
+              mat-icon-button
+              aria-label="Re-evaluate eligibility"
+              matTooltip="Re-evaluate"
+              [disabled]="facade.eligibilityLoading()"
+              (click)="facade.refreshEligibility()"
+            >
+              <mat-icon>refresh</mat-icon>
+            </button>
+          }
+        </div>
+
+        @if (facade.eligibilityLoading()) {
+          <div class="loading-block eligibility-loading"><mat-spinner diameter="34"></mat-spinner></div>
+        } @else if (facade.eligibility(); as eligibility) {
+          <div class="member-hero">
+            <span class="avatar avatar-lg">{{ initials(eligibility.fullName) }}</span>
+            <div class="hero-copy">
+              <h3>{{ eligibility.fullName }}</h3>
+              <p>{{ eligibility.memberNumber }} · {{ eligibility.membershipPlan }}</p>
+            </div>
+            @if (eligibility.allowed) {
+              <span class="decision-dot dot-allowed" aria-label="Allowed"></span>
+            } @else {
+              <span class="decision-dot dot-denied" aria-label="Denied"></span>
+            }
+          </div>
+
+          <div class="decision" [class.decision-allowed]="eligibility.allowed" [class.decision-denied]="!eligibility.allowed">
+            <mat-icon aria-hidden="true">{{ eligibility.allowed ? 'verified' : 'block' }}</mat-icon>
+            <div>
+              <strong>{{ eligibility.allowed ? 'Cleared to enter' : 'Access not permitted' }}</strong>
+              <span>{{ eligibility.message }}</span>
+            </div>
+            <span class="decision-code">{{ eligibility.code }}</span>
+          </div>
+
+          <dl class="detail-grid">
+            <div>
+              <dt>Membership</dt>
+              <dd>{{ eligibility.membershipStatus }}</dd>
+            </div>
+            <div>
+              <dt>Member status</dt>
+              <dd>{{ eligibility.memberStatus }}</dd>
+            </div>
+            <div>
+              <dt>Home club</dt>
+              <dd>{{ eligibility.homeBranchName ?? 'No home club' }}</dd>
+            </div>
+            <div>
+              <dt>Club access</dt>
+              <dd>{{ eligibility.allClubsAccess ? 'All clubs' : 'Home club only' }}</dd>
+            </div>
+            <div>
+              <dt>Valid until</dt>
+              <dd>{{ formatDate(eligibility.membershipEndsAt) }}</dd>
+            </div>
+            <div>
+              <dt>Decision at</dt>
+              <dd>{{ formatDate(eligibility.evaluatedAt) }}</dd>
+            </div>
+          </dl>
+
+          @if (eligibility.openCheckInId) {
+            <div class="visit-active">
+              <span class="pulse-dot"></span>
+              <div>
+                <strong>Currently inside</strong>
+                <span>Since {{ formatDate(eligibility.checkedInAt) }} · {{ facade.branch()?.name }}</span>
+              </div>
+              <button
+                type="button"
+                mat-stroked-button
+                class="checkout-button"
+                [disabled]="facade.actionLoading()"
+                (click)="checkOut(eligibility.openCheckInId)"
+              >
+                @if (facade.actionLoading()) {
+                  <mat-spinner diameter="18"></mat-spinner>
+                } @else {
+                  <mat-icon>logout</mat-icon>
+                }
+                Check out
+              </button>
+            </div>
+          } @else {
+            <div class="action-row">
+              <button
+                type="button"
+                mat-flat-button
+                class="checkin-button"
+                data-testid="check-in-button"
+                [disabled]="!eligibility.allowed || facade.actionLoading()"
+                (click)="checkIn()"
+              >
+                @if (facade.actionLoading()) {
+                  <mat-spinner diameter="18"></mat-spinner>
+                } @else {
+                  <mat-icon>login</mat-icon>
+                }
+                Check in at {{ facade.branch()?.name ?? 'club' }}
+              </button>
+              <span class="action-hint">Adds a FrontDesk visit and access audit entry.</span>
+            </div>
+          }
+        } @else {
+          <div class="empty-state eligibility-empty">
+            <mat-icon aria-hidden="true">badge</mat-icon>
+            <strong>Select a member</strong>
+            <span>Choose a member to evaluate access for this club.</span>
+          </div>
+        }
+      </section>
+
+      <section class="panel inside-panel" aria-labelledby="inside-title">
+        <div class="panel-heading">
+          <div>
+            <h2 id="inside-title">Inside now</h2>
+            <p>{{ facade.openVisits().length }} open visits at this club</p>
+          </div>
+          <span class="capacity-chip">{{ facade.occupancy()?.utilizationPercent ?? 0 }}% full</span>
+        </div>
+
+        @if (facade.openVisits().length === 0) {
+          <div class="empty-state compact">
+            <mat-icon aria-hidden="true">chair</mat-icon>
+            <span>The floor is quiet — no open visits.</span>
+          </div>
+        } @else {
+          <ul class="inside-list">
+            @for (visit of facade.openVisits().slice(0, 3); track visit.id) {
+              <li>
+                <span class="avatar avatar-sm">{{ initials(visit.memberName) }}</span>
+                <div class="inside-copy">
+                  <strong>{{ visit.memberName }}</strong>
+                  <span>{{ visit.memberNumber }} · {{ formatDate(visit.checkedInAt) }}</span>
+                </div>
+                <span class="duration">{{ formatDuration(visit.durationMinutes) }}</span>
+                <button
+                  type="button"
+                  mat-icon-button
+                  aria-label="Check out {{ visit.memberName }}"
+                  matTooltip="Check out"
+                  [disabled]="facade.actionLoading()"
+                  (click)="checkOut(visit.id)"
+                >
+                  <mat-icon>logout</mat-icon>
+                </button>
+              </li>
+            }
+          </ul>
+          <a class="view-all" routerLink="/checkins/occupancy">
+            View all {{ facade.openVisits().length }} inside
+            <mat-icon aria-hidden="true">arrow_forward</mat-icon>
+          </a>
+        }
+      </section>
+    </div>
+  </div>
+</section>

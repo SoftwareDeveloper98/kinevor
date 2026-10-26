@@ -1,0 +1,7 @@
+{
+  "default": "en",
+  "languages": [
+    { "code": "en", "name": "English", "short": "EN", "ogLocale": "en_US", "dir": "ltr" },
+    { "code": "ar", "name": "العربية", "short": "العربية", "ogLocale": "ar_AR", "dir": "rtl" }
+  ]
+}
