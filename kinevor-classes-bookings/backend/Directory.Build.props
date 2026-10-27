@@ -1,4 +1,4 @@
-﻿<Project>
+<Project>
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
     <Nullable>enable</Nullable>
@@ -9,7 +9,7 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <Deterministic>true</Deterministic>
     <Version>0.1.0</Version>
-    <Authors>George Victor Kamal</Authors>
+    <Authors>Devonomics</Authors>
     <Company>Kinevor</Company>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/SoftwareDeveloper98/kinevor-classes-bookings</RepositoryUrl>
