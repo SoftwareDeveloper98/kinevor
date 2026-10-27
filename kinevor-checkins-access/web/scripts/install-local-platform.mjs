@@ -49,8 +49,8 @@ try {
   const npmCli = process.env.npm_execpath;
   const command = npmCli ? process.execPath : (process.platform === 'win32' ? 'npm.cmd' : 'npm');
   const args = npmCli
-    ? [npmCli, 'install', '--no-audit', '--no-fund']
-    : ['install', '--no-audit', '--no-fund'];
+    ? [npmCli, 'install', '--no-audit', '--no-fund', '--install-links']
+    : ['install', '--no-audit', '--no-fund', '--install-links'];
   const result = spawnSync(command, args, { cwd: webRoot, stdio: 'inherit' });
   if (result.error) {
     console.error(result.error.message);

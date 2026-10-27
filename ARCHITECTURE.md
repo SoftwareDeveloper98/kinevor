@@ -164,8 +164,11 @@ All Angular code uses Angular 21 conventions:
 Every module workspace depends on the platform Angular package. Its
 `install:local` script rewrites that dependency to the sibling platform build,
 runs `npm install`, restores `package.json` and removes the generated lockfile.
-In CI, the platform build artifact is restored to the same sibling path before
-the module install runs.
+The install uses npm's `--install-links`, so the platform build is copied into
+the module's `node_modules` rather than symlinked outside it; that keeps
+`@angular/*` resolution working against the module's own toolchain. In CI, the
+platform build artifact is restored to the same sibling path before the module
+install runs.
 
 ## Mobile conventions
 
