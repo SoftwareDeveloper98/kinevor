@@ -37,7 +37,7 @@ Backend projects target `net9.0`; the Angular library targets Angular 21.
 ## Requirements
 
 - .NET SDK 9.0 or 10.0.
-- Node.js 22 or 24 and npm 10 or later.
+- Node.js 22.12+ or 24+ and npm 11 or later.
 - No registry credentials are needed inside the monorepo; modules consume the
   local platform build.
 

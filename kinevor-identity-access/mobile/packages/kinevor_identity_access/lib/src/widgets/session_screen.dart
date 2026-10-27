@@ -363,7 +363,7 @@ class _FactsCard extends StatelessWidget {
               label: strings.lastSignIn,
               value: lastLogin == null
                   ? strings.never
-                  : lastLogin.toLocal().toString().split('.').first,
+                  : '${lastLogin.toUtc().toString().split('.').first} UTC',
             ),
             const Divider(),
             _FactRow(
@@ -465,7 +465,7 @@ class _TokenCard extends StatelessWidget {
             ),
             const SizedBox(height: 8),
             Text(
-              session.expiresAt.toLocal().toString().split('.').first,
+              '${session.expiresAt.toUtc().toString().split('.').first} UTC',
               style: Theme.of(context).textTheme.titleMedium,
             ),
             const SizedBox(height: 12),

@@ -164,7 +164,7 @@ kinevor/
 
 - .NET SDK 10 (the projects target `net9.0`; the ASP.NET Core 9 runtime is
   required)
-- Node.js 22+ and npm 10+
+- Node.js 22.12+ and npm 11+ (Node 24 LTS recommended)
 - Flutter 3.35+ for the mobile packages
 
 ### 1. Build the platform artifacts once

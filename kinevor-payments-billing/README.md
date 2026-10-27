@@ -131,7 +131,7 @@ The commands below use PowerShell; on macOS or Linux use forward slashes.
 ### Prerequisites
 
 - .NET SDK 10.0.100+ (pinned by `global.json`) and an ASP.NET Core 9.0+ runtime.
-- Node.js 22+ and npm 10+.
+- Node.js 22.12+ and npm 11+.
 - Flutter 3.35+ (the repository is verified with Flutter 3.47.7).
 
 ### 1. Build the platform packages

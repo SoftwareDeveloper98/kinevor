@@ -103,7 +103,7 @@ The commands below use PowerShell; on macOS or Linux use forward slashes.
 ### Prerequisites
 
 - .NET SDK 10 (the solution uses `.slnx`) and the ASP.NET Core 9 runtime.
-- Node.js 22+ and npm 10+.
+- Node.js 22.12+ and npm 11+.
 - Flutter 3.35+ only when working with the companion mobile package.
 
 ### 1. Build the platform packages

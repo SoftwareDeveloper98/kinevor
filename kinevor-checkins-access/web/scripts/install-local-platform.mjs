@@ -5,6 +5,18 @@ import { dirname, relative, resolve } from 'node:path';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const webRoot = resolve(here, '..');
+
+const npmMajor = Number(
+  process.env.npm_config_user_agent?.match(/\bnpm\/(\d+)/)?.[1] ?? 0,
+);
+if (npmMajor > 0 && npmMajor < 11) {
+  console.error(
+    `npm ${npmMajor} cannot resolve the Angular 21 + Vitest peer graph. npm 11 or later is required.\n`
+      + 'Upgrade with: npm install -g npm@11',
+  );
+  process.exit(1);
+}
+
 const packageFile = resolve(webRoot, 'package.json');
 const platformDir = resolve(
   webRoot,

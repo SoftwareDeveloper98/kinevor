@@ -71,7 +71,7 @@ The commands below use PowerShell; on macOS or Linux use forward slashes.
 ### Prerequisites
 
 - .NET SDK 10.0.100 or a compatible feature band.
-- Node.js 22.12+ or 24+, with npm.
+- Node.js 22.12+ or 24+, with npm 11+.
 - Google Chrome for screenshot capture.
 - The `Kinevor.Platform.*` NuGet packages. This module's `backend/nuget.config`
   expects them under the sibling `kinevor-platform/backend/artifacts/packages`

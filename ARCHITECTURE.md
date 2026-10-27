@@ -216,6 +216,10 @@ The module `nuget.config` points to
 `../../kinevor-platform/web/dist/kinevor-platform-web`. Both paths are relative
 to the module and work on Windows, Linux and macOS.
 
+Use npm 11 or later. npm 10's peer resolver crashes on the Angular 21 + Vitest
+dependency graph, so `install:local` checks the npm major version and stops with
+an upgrade hint instead of failing deep inside Arborist.
+
 If the platform packages are published to a registry, the module projects can
 restore them by version instead; `PUBLISHING.md` in each module documents that
 optional path.
