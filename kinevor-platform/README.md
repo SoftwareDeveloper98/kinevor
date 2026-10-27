@@ -1,12 +1,10 @@
 # Kinevor Platform
 
-[![CI](https://github.com/SoftwareDeveloper98/kinevor-platform/actions/workflows/ci.yml/badge.svg)](https://github.com/SoftwareDeveloper98/kinevor-platform/actions/workflows/ci.yml)
-[![NuGet](https://img.shields.io/badge/NuGet-0.1.0-004880)](https://github.com/SoftwareDeveloper98/kinevor-platform/packages)
-[![npm](https://img.shields.io/badge/npm-0.1.0-CB3837)](https://github.com/SoftwareDeveloper98/kinevor-platform/packages)
+[![CI](https://github.com/SoftwareDeveloper98/kinevor/actions/workflows/ci.yml/badge.svg)](https://github.com/SoftwareDeveloper98/kinevor/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 Shared .NET and Angular building blocks for the Kinevor gym platform. The
-repository has no product UI of its own; it supplies the contracts and services
+platform folder has no product UI of its own; it supplies the contracts and services
 that every feature module consumes.
 
 ## Packages
@@ -40,7 +38,8 @@ Backend projects target `net9.0`; the Angular library targets Angular 21.
 
 - .NET SDK 9.0 or 10.0.
 - Node.js 22 or 24 and npm 10 or later.
-- GitHub Packages credentials for consuming private packages.
+- No registry credentials are needed inside the monorepo; modules consume the
+  local platform build.
 
 ## Build And Test
 
@@ -53,7 +52,10 @@ npm ci
 npm run build
 ```
 
-## Consume NuGet Packages
+## Consume NuGet Packages (optional)
+
+These steps apply only if you publish the platform packages to a registry.
+Inside the monorepo, modules restore from the local package feed.
 
 Configure the GitHub Packages source once:
 
@@ -73,7 +75,10 @@ Then reference the packages:
 <PackageReference Include="Kinevor.Platform.Api" Version="0.1.0" />
 ```
 
-## Consume The Angular Package
+## Consume The Angular Package (optional)
+
+These steps apply only if you publish the package to a registry. Inside the
+monorepo, modules bind to the sibling build with `npm run install:local`.
 
 Create an `.npmrc` in the consuming workspace:
 
@@ -106,7 +111,7 @@ export const appConfig = {
 
 ## Local Development
 
-Feature repositories can consume unpacked local artifacts instead of published
+Modules in this monorepo consume unpacked local artifacts instead of published
 packages:
 
 ```powershell
@@ -116,25 +121,24 @@ npm ci
 npm run build
 ```
 
-The sibling module repositories expose `npm run install:local` for the Angular
-package.
+Each sibling module exposes `npm run install:local` for the Angular package.
 
-## Release
+## CI And Release
+
+The root `.github/workflows/ci.yml` builds, tests and packs this platform first,
+then injects the NuGet and Angular artifacts into the module matrices. No
+registry publication is required for the monorepo build.
+
+If you choose to distribute the packages:
 
 1. Update `Directory.Build.props`, both `package.json` files and this changelog.
-2. Commit and push the release state.
-3. Create and push tag `v0.1.0`.
-4. The release workflow publishes the three NuGet packages and the Angular
-   package to GitHub Packages.
+2. Run the platform tests and build from a clean checkout.
+3. Create and push a tag.
+4. Publish the three NuGet packages and the Angular package to your registry.
 
-Publish this repository before every module release wave. Module CI restores
-these packages from GitHub Packages. See [PUBLISHING.md](PUBLISHING.md) for the
-complete release checklist.
-
-Create a repository secret named `KINEVOR_PACKAGES_TOKEN` in consumer
-repositories. A classic PAT needs `repo` and `read:packages`; use
-`write:packages` only if the token also publishes packages. The platform release
-workflow uses the repository `GITHUB_TOKEN` for publishing.
+See [PUBLISHING.md](PUBLISHING.md) for the optional release checklist. A
+`KINEVOR_PACKAGES_TOKEN` repository secret is only needed by consumers that
+restore private packages from another repository.
 
 ## Security
 

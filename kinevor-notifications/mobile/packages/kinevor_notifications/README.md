@@ -22,9 +22,9 @@ Flutter member notification inbox, detail, preferences and device UI for Kinevor
 dependencies:
   kinevor_notifications:
     git:
-      url: https://github.com/SoftwareDeveloper98/kinevor-notifications.git
+      url: https://github.com/SoftwareDeveloper98/kinevor.git
       path: mobile/packages/kinevor_notifications
-      ref: v0.1.0
+      ref: main
 ```
 
 ## Use

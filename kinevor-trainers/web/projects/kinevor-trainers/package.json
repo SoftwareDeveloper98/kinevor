@@ -5,7 +5,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/SoftwareDeveloper98/kinevor-trainers.git"
+    "url": "https://github.com/SoftwareDeveloper98/kinevor.git"
   },
   "keywords": [
     "kinevor",
@@ -28,8 +28,8 @@
     "access": "restricted"
   },
   "author": "Devonomics",
-  "homepage": "https://github.com/SoftwareDeveloper98/kinevor-trainers#readme",
+  "homepage": "https://github.com/SoftwareDeveloper98/kinevor#readme",
   "bugs": {
-    "url": "https://github.com/SoftwareDeveloper98/kinevor-trainers/issues"
+    "url": "https://github.com/SoftwareDeveloper98/kinevor/issues"
   }
 }

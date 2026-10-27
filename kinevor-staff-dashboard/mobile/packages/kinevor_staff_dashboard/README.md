@@ -21,9 +21,9 @@ Flutter staff dashboard, trend and alert inbox UI and API client for Kinevor.
 dependencies:
   kinevor_staff_dashboard:
     git:
-      url: https://github.com/SoftwareDeveloper98/kinevor-staff-dashboard.git
+      url: https://github.com/SoftwareDeveloper98/kinevor.git
       path: mobile/packages/kinevor_staff_dashboard
-      ref: v0.1.0
+      ref: main
 ```
 
 ## Use

@@ -11,7 +11,7 @@ controllers.
 dotnet add package Kinevor.Modules.PaymentsBilling
 ```
 
-The package is published to GitHub Packages. Configure the
+The package can be published to GitHub Packages. Configure the
 `SoftwareDeveloper98` source and authenticate with a token that can read
 packages before restoring.
 

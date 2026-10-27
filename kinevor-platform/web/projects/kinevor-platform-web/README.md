@@ -5,7 +5,8 @@ authentication, internationalization, notices and theme state.
 
 ## Install
 
-Configure the GitHub Packages scope:
+Inside the monorepo, module workspaces bind to this build with
+`npm run install:local`. To install from a registry instead, configure its scope:
 
 ```ini
 @softwaredeveloper98:registry=https://npm.pkg.github.com

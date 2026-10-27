@@ -12,7 +12,13 @@ client primitives, platform services and Material styling contract.
 
 ## Install
 
-Authenticate the GitHub Packages scope:
+Inside the monorepo, bind the sibling platform build first:
+
+```powershell
+npm run install:local
+```
+
+If the packages are published to a registry, authenticate its scope:
 
 ```text
 @softwaredeveloper98:registry=https://npm.pkg.github.com

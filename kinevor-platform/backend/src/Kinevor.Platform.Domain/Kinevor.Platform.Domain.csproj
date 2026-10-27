@@ -4,7 +4,7 @@
     <Description>Shared domain kernel for Kinevor feature modules: entities, results, value objects, enums and specifications.</Description>
     <PackageTags>kinevor;platform;domain;ddd</PackageTags>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <PackageProjectUrl>https://github.com/SoftwareDeveloper98/kinevor-platform</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/SoftwareDeveloper98/kinevor</PackageProjectUrl>
   </PropertyGroup>
   <ItemGroup>
     <None Include="README.md" Pack="true" PackagePath="\" />

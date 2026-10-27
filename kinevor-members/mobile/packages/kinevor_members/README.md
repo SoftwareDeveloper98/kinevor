@@ -19,9 +19,9 @@ Flutter member self-service UI and API client for Kinevor.
 dependencies:
   kinevor_members:
     git:
-      url: https://github.com/SoftwareDeveloper98/kinevor-members.git
+      url: https://github.com/SoftwareDeveloper98/kinevor.git
       path: mobile/packages/kinevor_members
-      ref: v0.1.0
+      ref: main
 ```
 
 ## Use

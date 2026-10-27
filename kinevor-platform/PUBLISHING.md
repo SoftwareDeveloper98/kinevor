@@ -1,6 +1,9 @@
 # Publishing kinevor-platform
 
-This repository publishes the shared packages before any module release.
+> **Monorepo note:** Kinevor is published as one showcase monorepo. These steps are optional and apply only if you extract this folder into a standalone repository or publish its packages to a registry.
+
+
+This platform publishes the shared packages before any module release.
 
 ## Published artifacts
 
@@ -13,7 +16,7 @@ This repository publishes the shared packages before any module release.
 
 ## Prerequisites
 
-- The repository exists at `https://github.com/SoftwareDeveloper98/kinevor-platform`.
+- The monorepo exists at `https://github.com/SoftwareDeveloper98/kinevor`.
 - Actions are enabled with read and write workflow permissions.
 - The NuGet and npm versions are `0.1.0` in `backend/Directory.Build.props`,
   the Angular package and `CHANGELOG.md`.

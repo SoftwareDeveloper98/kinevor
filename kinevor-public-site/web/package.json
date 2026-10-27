@@ -5,7 +5,7 @@
   "scripts": {
     "ng": "ng",
     "build": "ng build public-site",
-    "start": "ng serve demo",
+    "start": "ng serve demo --port 4208",
     "build:demo": "ng build demo",
     "build:all": "npm run build && npm run build:demo",
     "test": "ng test public-site --watch=false",

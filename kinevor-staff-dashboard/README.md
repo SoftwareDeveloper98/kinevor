@@ -3,12 +3,9 @@
 Operating dashboard for the Kinevor gym platform: a .NET 9 API, a standalone
 Angular library with a runnable web demo, and a Flutter package with a mobile
 demo host. It gives front-desk and operations staff a branch-scoped view of
-membership, revenue, occupancy, activity and alerts without the original Kinevor
-monorepo.
+membership, revenue, occupancy, activity and alerts from this monorepo.
 
-[![CI](https://github.com/SoftwareDeveloper98/kinevor-staff-dashboard/actions/workflows/ci.yml/badge.svg)](https://github.com/SoftwareDeveloper98/kinevor-staff-dashboard/actions/workflows/ci.yml)
-[![NuGet](https://img.shields.io/badge/NuGet-Kinevor.Modules.StaffDashboard-004880?logo=nuget)](https://github.com/SoftwareDeveloper98/kinevor-staff-dashboard/pkgs/nuget/Kinevor.Modules.StaffDashboard)
-[![npm](https://img.shields.io/badge/npm-%40softwaredeveloper98%2Fkinevor--staff--dashboard--web-cb3837?logo=npm)](https://github.com/SoftwareDeveloper98/kinevor-staff-dashboard/pkgs/npm/kinevor-staff-dashboard-web)
+[![CI](https://github.com/SoftwareDeveloper98/kinevor/actions/workflows/ci.yml/badge.svg)](https://github.com/SoftwareDeveloper98/kinevor/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 ![Staff dashboard](docs/screenshots/web-dashboard.png)
@@ -42,7 +39,7 @@ flowchart LR
     APP --> D[Domain<br/>dashboard snapshots]
     APP --> R[Repositories]
     R --> EF[EF Core]
-    EF --> DB[(SQLite demo<br/>PostgreSQL in production)]
+    EF --> DB[(SQLite demo)]
     A -.reuses.-> P[Kinevor.Platform<br/>envelope, policies, current user, branch context]
 ```
 
@@ -101,6 +98,8 @@ queue.
 
 ## Quick start
 
+The commands below use PowerShell; on macOS or Linux use forward slashes.
+
 ### Prerequisites
 
 - .NET SDK 10 (the solution uses `.slnx`) and the ASP.NET Core 9 runtime.
@@ -109,16 +108,15 @@ queue.
 
 ### 1. Build the platform packages
 
-The backend restores `Kinevor.Platform.*` from the sibling platform repository's
-package feed. Clone it next to this repository and pack it once:
+The backend restores `Kinevor.Platform.*` from the sibling platform folder's
+package feed. Pack it once:
 
 ```powershell
-git clone https://github.com/SoftwareDeveloper98/kinevor-platform.git ..\kinevor-platform
 dotnet pack ..\kinevor-platform\backend\Kinevor.Platform.slnx -c Release `
   -o ..\kinevor-platform\backend\artifacts\packages
 ```
 
-If the platform packages are published to GitHub Packages, configure that source
+If the platform packages are published to a registry, configure that source
 instead and skip the local pack step.
 
 ### 2. Run the API
@@ -165,7 +163,7 @@ npm start
 
 `npm run install:local` temporarily points the workspace at the local platform
 build, installs dependencies, restores `package.json`, and removes the generated
-lockfile. When the platform package is available in GitHub Packages,
+lockfile. If the platform package is available in a registry,
 authenticate the scope in `.npmrc` and use the normal install path instead:
 
 ```powershell
@@ -251,7 +249,7 @@ and range controls, alerts filters and 390x844 goldens.
 | npm | `@softwaredeveloper98/kinevor-staff-dashboard-web` | Angular components, gateway, facade, provider and routes |
 | Flutter | `kinevor_staff_dashboard` | Dashboard, alert inbox, typed client and repository |
 
-Install the Angular library after authenticating to GitHub Packages:
+If the Angular package is published to a registry, install it with:
 
 ```powershell
 npm install @softwaredeveloper98/kinevor-staff-dashboard-web
@@ -260,9 +258,8 @@ npm install @softwaredeveloper98/kinevor-staff-dashboard-web
 The Angular package expects `@softwaredeveloper98/kinevor-platform-web` as a peer
 dependency.
 
-CI restores the platform NuGet and npm packages from GitHub Packages. Publish
-`kinevor-platform` `0.1.0` first, or the backend and web jobs will fail at
-restore/install. The Flutter job runs on Windows, formats, analyzes, tests and
+The monorepo CI packs the platform once and feeds the artifacts to each module
+job. Modules do not need a published registry to build. The Flutter job runs on Windows, formats, analyzes, tests and
 builds the example without external package dependencies.
 
 ## Design decisions
@@ -302,30 +299,27 @@ kinevor-staff-dashboard/
     packages/kinevor_staff_dashboard/                  Flutter package + demo
   docs/
     screenshots/
-  .github/workflows/
 ```
 
 ## Related modules
 
-- [Kinevor Platform](https://github.com/SoftwareDeveloper98/kinevor-platform) -
+- [Kinevor Platform](../kinevor-platform) -
   shared API, auth, i18n, notices and Angular primitives.
-- [Kinevor Identity & Access](https://github.com/SoftwareDeveloper98/kinevor-identity-access)
-- [Kinevor Trainers](https://github.com/SoftwareDeveloper98/kinevor-trainers)
-- [Kinevor Members](https://github.com/SoftwareDeveloper98/kinevor-members)
-- [Kinevor Memberships](https://github.com/SoftwareDeveloper98/kinevor-memberships)
-- [Kinevor Classes & Bookings](https://github.com/SoftwareDeveloper98/kinevor-classes-bookings)
-- [Kinevor Check-ins & Access](https://github.com/SoftwareDeveloper98/kinevor-checkins-access)
-- [Kinevor Payments & Billing](https://github.com/SoftwareDeveloper98/kinevor-payments-billing)
-- [Kinevor Notifications](https://github.com/SoftwareDeveloper98/kinevor-notifications)
-- [Kinevor Public Site](https://github.com/SoftwareDeveloper98/kinevor-public-site)
+- [Kinevor Identity & Access](../kinevor-identity-access)
+- [Kinevor Trainers](../kinevor-trainers)
+- [Kinevor Members](../kinevor-members)
+- [Kinevor Memberships](../kinevor-memberships)
+- [Kinevor Classes & Bookings](../kinevor-classes-bookings)
+- [Kinevor Check-ins & Access](../kinevor-checkins-access)
+- [Kinevor Payments & Billing](../kinevor-payments-billing)
+- [Kinevor Notifications](../kinevor-notifications)
+- [Kinevor Public Site](../kinevor-public-site)
 
-## Release Checklist
+## Verification
 
-- Confirm `kinevor-platform` `v0.1.0` is published.
-- Add the `KINEVOR_PACKAGES_TOKEN` repository secret.
-- Push tag `v0.1.0` after CI is green.
-
-See [PUBLISHING.md](PUBLISHING.md) for the complete release and consumer setup.
+- Run this module's backend, web and mobile suites (commands above).
+- The root CI runs the module in its backend, web and/or mobile matrix.
+- See [PUBLISHING.md](PUBLISHING.md) only if you intend to distribute packages.
 
 ## Security
 

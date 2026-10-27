@@ -5,7 +5,7 @@
   "scripts": {
     "ng": "ng",
     "build": "ng build kinevor-identity-access",
-    "start": "ng serve demo",
+    "start": "ng serve demo --port 4201",
     "build:demo": "ng build demo",
     "build:all": "npm run build && npm run build:demo",
     "test": "ng test kinevor-identity-access --watch=false",

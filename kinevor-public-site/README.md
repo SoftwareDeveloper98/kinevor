@@ -1,7 +1,7 @@
 # Kinevor Public Site
 
 A complete public website for Kinevor: a coach-led strength and movement gym
-with three New York locations. The repository contains a tested .NET module and
+with three New York locations. This module contains a tested .NET module and
 demo API for public content and lead capture, plus an Angular 21 component
 library and reference website.
 
@@ -66,20 +66,22 @@ components, signals and OnPush change detection.
 
 ## Quick Start
 
+The commands below use PowerShell; on macOS or Linux use forward slashes.
+
 ### Prerequisites
 
 - .NET SDK 10.0.100 or a compatible feature band.
 - Node.js 22.12+ or 24+, with npm.
 - Google Chrome for screenshot capture.
-- The `Kinevor.Platform.*` NuGet packages. The repository's `backend/nuget.config`
-  expects them under a sibling `kinevor-platform/backend/artifacts/packages`
+- The `Kinevor.Platform.*` NuGet packages. This module's `backend/nuget.config`
+  expects them under the sibling `kinevor-platform/backend/artifacts/packages`
   directory. A hosted feed can be used instead.
-- The local `@softwaredeveloper98/kinevor-platform-web` package, or access to
-  the GitHub Packages feed.
+- The local `@softwaredeveloper98/kinevor-platform-web` package, or a registry
+  that hosts it.
 
 ### 1. Run the demo API
 
-From the repository root:
+From this module's folder:
 
 ```powershell
 dotnet restore backend/Kinevor.Modules.PublicSite.slnx
@@ -110,8 +112,8 @@ Open `http://localhost:4208`. The demo is configured for the API at
 
 `install:local` temporarily points the workspace at the sibling
 `kinevor-platform/web/dist/kinevor-platform-web` package and runs `npm install`.
-Use `npm install` directly after authenticating to GitHub Packages if the
-platform package is available from the feed.
+Use `npm install` directly after authenticating to a registry if the platform
+package is available from that feed.
 
 ### 3. Verify
 
@@ -243,23 +245,18 @@ and apply their own authentication and authorization.
 
 ## CI And Release
 
-`.github/workflows/ci.yml` restores from NuGet and GitHub Packages, builds and
-tests the backend, then builds and tests the Angular library and demo. It
-uploads the NuGet packages and built library as artifacts.
+The root `.github/workflows/ci.yml` runs this module in the backend and web
+matrices: it restores the platform artifacts, builds and tests the API, then
+installs, tests and builds the Angular library and demo. No registry
+publication is required for the monorepo build.
 
-`.github/workflows/release.yml` runs on `v*` tags, publishes both NuGet packages
-and the npm package to GitHub Packages, and attaches the screenshots to the
-GitHub release. Restore and install use the `KINEVOR_PACKAGES_TOKEN` repository
-secret, falling back to `GITHUB_TOKEN`. Set the secret before the first CI run
-because the platform packages live in another private repository.
+Optional package distribution is documented in [PUBLISHING.md](PUBLISHING.md).
 
-## Release Checklist
+## Verification
 
-- Confirm `kinevor-platform` `v0.1.0` is published.
-- Add the `KINEVOR_PACKAGES_TOKEN` repository secret.
-- Push tag `v0.1.0` after CI is green.
-
-See [PUBLISHING.md](PUBLISHING.md) for the complete release and consumer setup.
+- Run this module's backend and web suites (commands above).
+- The root CI runs the module in its backend, web and/or mobile matrix.
+- See [PUBLISHING.md](PUBLISHING.md) only if you intend to distribute packages.
 
 ## License
 

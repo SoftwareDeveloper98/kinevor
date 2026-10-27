@@ -1,6 +1,9 @@
 # Publishing kinevor-notifications
 
-This repository is publish-ready for private GitHub Packages distribution.
+> **Monorepo note:** Kinevor is published as one showcase monorepo. These steps are optional and apply only if you extract this folder into a standalone repository or publish its packages to a registry.
+
+
+This module is publish-ready for private GitHub Packages distribution.
 
 ## Published artifacts
 
@@ -12,7 +15,7 @@ This repository is publish-ready for private GitHub Packages distribution.
 
 ## Prerequisites
 
-- The repository exists at `https://github.com/SoftwareDeveloper98/kinevor-notifications`.
+- The monorepo exists at `https://github.com/SoftwareDeveloper98/kinevor`.
 - `kinevor-platform` `v0.1.0` is published first.
 - A repository secret named `KINEVOR_PACKAGES_TOKEN` is configured. Use a
   classic PAT with `repo`, `read:packages` and `write:packages`.
@@ -36,8 +39,8 @@ sufficient for cross-repository package restore.
    git push origin v0.1.0
    ```
 
-5. Watch the Release workflow. It publishes the packages listed above and
-   attaches the Flutter archive when applicable.
+5. Publish the packages listed above with `dotnet nuget push` and `npm publish`,
+   or add a release workflow. Only the root CI workflow ships with the monorepo.
 
 ## After Publishing
 

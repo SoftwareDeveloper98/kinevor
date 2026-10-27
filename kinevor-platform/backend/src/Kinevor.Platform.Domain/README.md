@@ -14,5 +14,5 @@ Shared domain kernel for Kinevor feature modules.
 dotnet add package Kinevor.Platform.Domain --version 0.1.0
 ```
 
-Consumers need the GitHub Packages NuGet source configured for the
+Outside the monorepo, consumers need the GitHub Packages NuGet source configured for the
 `SoftwareDeveloper98` account.

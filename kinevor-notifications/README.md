@@ -4,10 +4,9 @@ Notification vertical slice for the Kinevor gym platform: a .NET 9 API and a
 standalone Flutter package with a runnable example. The module owns member
 inboxes, delivery records, preferences, device tokens, templates and e-mail
 suppressions. It can be consumed independently, and the demo runs locally
-without the original Kinevor monorepo.
+from this monorepo.
 
-[![CI](https://github.com/SoftwareDeveloper98/kinevor-notifications/actions/workflows/ci.yml/badge.svg)](https://github.com/SoftwareDeveloper98/kinevor-notifications/actions/workflows/ci.yml)
-[![NuGet](https://img.shields.io/badge/NuGet-Kinevor.Modules.Notifications-004880?logo=nuget)](https://github.com/SoftwareDeveloper98/kinevor-notifications/pkgs/nuget/Kinevor.Modules.Notifications)
+[![CI](https://github.com/SoftwareDeveloper98/kinevor/actions/workflows/ci.yml/badge.svg)](https://github.com/SoftwareDeveloper98/kinevor/actions/workflows/ci.yml)
 [![Flutter](https://img.shields.io/badge/Flutter-3.35%2B-02569B?logo=flutter)](https://flutter.dev)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
@@ -16,7 +15,7 @@ without the original Kinevor monorepo.
 ## Why this module
 
 Notifications is the member-facing record of what the gym told someone and how
-it reached them. This repository packages that slice for member applications and
+it reached them. This module packages that slice for member applications and
 staff tools without depending on an external e-mail or push provider.
 
 - Members filter their inbox by category and channel, or show unread messages
@@ -41,7 +40,7 @@ flowchart LR
     APP --> D[Domain<br/>Notification, preference, device,<br/>template and suppression records]
     APP --> R[Repositories]
     R --> EF[EF Core]
-    EF --> DB[(SQLite demo<br/>PostgreSQL in production)]
+    EF --> DB[(SQLite demo)]
     A -.reuses.-> P[Kinevor.Platform<br/>envelope, policies, current user]
 ```
 
@@ -122,6 +121,8 @@ the authenticated member; requesting another member's notification returns
 
 ## Quick start
 
+The commands below use PowerShell; on macOS or Linux use forward slashes.
+
 ### Prerequisites
 
 - .NET SDK 10 (the solution uses `.slnx`) and the ASP.NET Core 9 runtime.
@@ -130,16 +131,15 @@ the authenticated member; requesting another member's notification returns
 
 ### 1. Build the platform packages
 
-The backend restores `Kinevor.Platform.*` from the sibling platform repository's
-local package feed. Clone it next to this repository and pack it once:
+The backend restores `Kinevor.Platform.*` from the sibling platform folder's
+local package feed. Pack it once:
 
 ```powershell
-git clone https://github.com/SoftwareDeveloper98/kinevor-platform.git ..\kinevor-platform
 dotnet pack ..\kinevor-platform\backend\Kinevor.Platform.slnx -c Release `
   -o ..\kinevor-platform\backend\artifacts\packages
 ```
 
-If the platform packages are published to GitHub Packages, configure that source
+If the platform packages are published to a registry, configure that source
 instead and skip the local pack step.
 
 ### 2. Run the API
@@ -230,19 +230,19 @@ covers the HTTP client, all three screens and golden images.
 | NuGet | `Kinevor.Modules.Notifications.EntityFrameworkCore` | `NotificationsDbContext`, mapping and repositories |
 | Flutter | `kinevor_notifications` | API client, repository, inbox/detail/preferences screens, theme and strings |
 
-Consume the Flutter package from the repository tag:
+Consume the Flutter package from the monorepo by path or git:
 
 ```yaml
 dependencies:
   kinevor_notifications:
     git:
-      url: https://github.com/SoftwareDeveloper98/kinevor-notifications.git
+      url: https://github.com/SoftwareDeveloper98/kinevor.git
       path: mobile/packages/kinevor_notifications
-      ref: v0.1.0
+      ref: main
 ```
 
-CI restores the platform NuGet packages from GitHub Packages. Publish
-`kinevor-platform` `0.1.0` first, or the backend job will fail at restore.
+The monorepo CI packs the platform once and feeds the artifacts to each module
+job. Modules do not need a published registry to build.
 
 ## Design decisions
 
@@ -278,30 +278,27 @@ kinevor-notifications/
     packages/kinevor_notifications/example/ runnable demo
   docs/
     screenshots/
-  .github/workflows/
 ```
 
 ## Related modules
 
-- [Kinevor Platform](https://github.com/SoftwareDeveloper98/kinevor-platform) -
+- [Kinevor Platform](../kinevor-platform) -
   shared API, auth, i18n, notices and Angular primitives.
-- [Kinevor Identity & Access](https://github.com/SoftwareDeveloper98/kinevor-identity-access)
-- [Kinevor Trainers](https://github.com/SoftwareDeveloper98/kinevor-trainers)
-- [Kinevor Members](https://github.com/SoftwareDeveloper98/kinevor-members)
-- [Kinevor Memberships](https://github.com/SoftwareDeveloper98/kinevor-memberships)
-- [Kinevor Classes & Bookings](https://github.com/SoftwareDeveloper98/kinevor-classes-bookings)
-- [Kinevor Check-ins & Access](https://github.com/SoftwareDeveloper98/kinevor-checkins-access)
-- [Kinevor Payments & Billing](https://github.com/SoftwareDeveloper98/kinevor-payments-billing)
-- [Kinevor Public Site](https://github.com/SoftwareDeveloper98/kinevor-public-site)
-- [Kinevor Staff Dashboard](https://github.com/SoftwareDeveloper98/kinevor-staff-dashboard)
+- [Kinevor Identity & Access](../kinevor-identity-access)
+- [Kinevor Trainers](../kinevor-trainers)
+- [Kinevor Members](../kinevor-members)
+- [Kinevor Memberships](../kinevor-memberships)
+- [Kinevor Classes & Bookings](../kinevor-classes-bookings)
+- [Kinevor Check-ins & Access](../kinevor-checkins-access)
+- [Kinevor Payments & Billing](../kinevor-payments-billing)
+- [Kinevor Public Site](../kinevor-public-site)
+- [Kinevor Staff Dashboard](../kinevor-staff-dashboard)
 
-## Release Checklist
+## Verification
 
-- Confirm `kinevor-platform` `v0.1.0` is published.
-- Add the `KINEVOR_PACKAGES_TOKEN` repository secret.
-- Push tag `v0.1.0` after CI is green.
-
-See [PUBLISHING.md](PUBLISHING.md) for the complete release and consumer setup.
+- Run this module's backend and mobile suites (commands above).
+- The root CI runs the module in its backend, web and/or mobile matrix.
+- See [PUBLISHING.md](PUBLISHING.md) only if you intend to distribute packages.
 
 ## Security
 

@@ -5,9 +5,14 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
+  workflow_dispatch:
 
 permissions:
   contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
 
 env:
   DOTNET_NOLOGO: true
@@ -15,8 +20,9 @@ env:
 
 jobs:
   platform-backend:
-    name: Platform backend
+    name: Platform · backend
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     defaults:
       run:
         working-directory: kinevor-platform/backend
@@ -35,10 +41,19 @@ jobs:
         run: dotnet test Kinevor.Platform.slnx -c Release --no-build
       - name: Pack
         run: dotnet pack Kinevor.Platform.slnx -c Release --no-build -o artifacts/packages
+      - name: Upload NuGet packages
+        uses: actions/upload-artifact@v4
+        with:
+          name: platform-nuget
+          path: |
+            kinevor-platform/backend/artifacts/packages/*.nupkg
+            kinevor-platform/backend/artifacts/packages/*.snupkg
+          retention-days: 1
 
   platform-web:
-    name: Platform web
+    name: Platform · web
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     defaults:
       run:
         working-directory: kinevor-platform/web
@@ -53,3 +68,129 @@ jobs:
         run: npm ci
       - name: Build
         run: npm run build
+      - name: Upload Angular package
+        uses: actions/upload-artifact@v4
+        with:
+          name: platform-web
+          path: kinevor-platform/web/dist/kinevor-platform-web
+          retention-days: 1
+
+  module-backend:
+    name: Backend · ${{ matrix.service }}
+    needs: platform-backend
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        service:
+          - kinevor-identity-access
+          - kinevor-members
+          - kinevor-memberships
+          - kinevor-classes-bookings
+          - kinevor-checkins-access
+          - kinevor-payments-billing
+          - kinevor-notifications
+          - kinevor-trainers
+          - kinevor-staff-dashboard
+          - kinevor-public-site
+    defaults:
+      run:
+        working-directory: ${{ matrix.service }}/backend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: |
+            9.0.x
+            10.0.x
+      - name: Restore platform package feed
+        uses: actions/download-artifact@v4
+        with:
+          name: platform-nuget
+          path: kinevor-platform/backend/artifacts/packages
+      - name: Restore
+        run: dotnet restore *.slnx
+      - name: Build
+        run: dotnet build *.slnx -c Release --no-restore
+      - name: Test
+        run: dotnet test *.slnx -c Release --no-build
+
+  module-web:
+    name: Web · ${{ matrix.service }}
+    needs: platform-web
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        service:
+          - kinevor-identity-access
+          - kinevor-members
+          - kinevor-memberships
+          - kinevor-classes-bookings
+          - kinevor-checkins-access
+          - kinevor-payments-billing
+          - kinevor-trainers
+          - kinevor-staff-dashboard
+          - kinevor-public-site
+    defaults:
+      run:
+        working-directory: ${{ matrix.service }}/web
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Restore platform Angular package
+        uses: actions/download-artifact@v4
+        with:
+          name: platform-web
+          path: kinevor-platform/web/dist/kinevor-platform-web
+      - name: Install with local platform binding
+        run: npm run install:local
+      - name: Test
+        run: npm test
+      - name: Build library and demo
+        run: npm run build:all
+
+  module-mobile:
+    name: Mobile · ${{ matrix.package }}
+    runs-on: windows-latest
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - service: kinevor-identity-access
+            package: kinevor_identity_access
+          - service: kinevor-members
+            package: kinevor_members
+          - service: kinevor-memberships
+            package: kinevor_memberships
+          - service: kinevor-classes-bookings
+            package: kinevor_classes_bookings
+          - service: kinevor-checkins-access
+            package: kinevor_checkins_access
+          - service: kinevor-payments-billing
+            package: kinevor_payments_billing
+          - service: kinevor-notifications
+            package: kinevor_notifications
+          - service: kinevor-trainers
+            package: kinevor_trainers
+          - service: kinevor-staff-dashboard
+            package: kinevor_staff_dashboard
+    defaults:
+      run:
+        working-directory: ${{ matrix.service }}/mobile/packages/${{ matrix.package }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          flutter-version: 3.47.8
+          cache: true
+      - name: Install
+        run: flutter pub get
+      - name: Test
+        run: flutter test

@@ -41,7 +41,7 @@ npm run capture:screenshots
 `install:local` expects `../../kinevor-platform/web/dist/kinevor-platform-web`.
 It temporarily rewrites the dependency, installs, restores `package.json`, and
 removes the generated lockfile. Use normal `npm install` when the platform
-package is available from GitHub Packages.
+package is available from a registry.
 
 ## Screenshots
 

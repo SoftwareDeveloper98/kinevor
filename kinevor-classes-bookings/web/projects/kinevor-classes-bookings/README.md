@@ -4,9 +4,9 @@ Angular UI for the Kinevor classes and bookings module: the weekly class
 schedule and catalogue, class detail with capacity and roster, booking,
 cancellation, waitlist state and the member's upcoming and past bookings.
 
-## GitHub Packages access
+## Registry access (optional)
 
-This package is private. Configure the scope and token before installing:
+This package is built inside the monorepo. If you publish it to a private registry, configure the scope and token before installing:
 
 ```ini
 @softwaredeveloper98:registry=https://npm.pkg.github.com

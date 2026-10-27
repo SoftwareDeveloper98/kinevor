@@ -17,9 +17,9 @@ Flutter trainer directory UI and API client for Kinevor.
 dependencies:
   kinevor_trainers:
     git:
-      url: https://github.com/SoftwareDeveloper98/kinevor-trainers.git
+      url: https://github.com/SoftwareDeveloper98/kinevor.git
       path: mobile/packages/kinevor_trainers
-      ref: v0.1.0
+      ref: main
 ```
 
 ## Use

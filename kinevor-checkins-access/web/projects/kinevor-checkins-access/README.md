@@ -4,9 +4,9 @@ Angular UI for the Kinevor Check-ins & Access module: the front-desk member
 lookup and check-in workflow, live occupancy dashboard, visit history, and the
 typed gateway/facades behind them.
 
-## GitHub Packages access
+## Registry access (optional)
 
-This package is private. Configure the scope and token before installing:
+This package is built inside the monorepo. If you publish it to a private registry, configure the scope and token before installing:
 
 ```ini
 @softwaredeveloper98:registry=https://npm.pkg.github.com

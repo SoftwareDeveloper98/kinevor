@@ -13,25 +13,44 @@ TestResults/
 **/node_modules/
 **/dist/
 **/.angular/
+**/.nx/
 coverage/
 playwright-report/
 test-results/
 *.tgz
 npm-debug.log*
+yarn-error.log*
 
 # Flutter / Dart
 **/.dart_tool/
-**/build/
 **/.flutter-plugins
 **/.flutter-plugins-dependencies
 **/.packages
+**/build/
+**/windows/flutter/ephemeral/
+**/linux/flutter/ephemeral/
+**/macos/Flutter/ephemeral/
 **/ios/Pods/
 **/android/.gradle/
+**/android/local.properties
+*.iml
+
+# Local databases
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
 
 # Local configuration
 .env
 .env.*
 !.env.example
+
+# Logs and temporary files
+*.log
+*.tmp
+*.bak
 
 # OS and editors
 .DS_Store

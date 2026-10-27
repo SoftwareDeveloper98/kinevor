@@ -2,8 +2,8 @@ name: kinevor_identity_access
 description: Standalone Flutter identity and access UI and API client for Kinevor.
 version: 0.1.0
 publish_to: none
-repository: https://github.com/SoftwareDeveloper98/kinevor-identity-access
-issue_tracker: https://github.com/SoftwareDeveloper98/kinevor-identity-access/issues
+repository: https://github.com/SoftwareDeveloper98/kinevor
+issue_tracker: https://github.com/SoftwareDeveloper98/kinevor/issues
 
 environment:
   sdk: '>=3.9.0 <4.0.0'

@@ -2,8 +2,8 @@ name: kinevor_memberships
 description: Standalone Flutter membership plans, cover and lifecycle UI for Kinevor.
 version: 0.1.0
 publish_to: none
-repository: https://github.com/SoftwareDeveloper98/kinevor-memberships
-issue_tracker: https://github.com/SoftwareDeveloper98/kinevor-memberships/issues
+repository: https://github.com/SoftwareDeveloper98/kinevor
+issue_tracker: https://github.com/SoftwareDeveloper98/kinevor/issues
 
 environment:
   sdk: '>=3.9.0 <4.0.0'

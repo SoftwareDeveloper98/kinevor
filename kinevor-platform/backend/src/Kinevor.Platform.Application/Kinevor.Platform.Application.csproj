@@ -4,7 +4,7 @@
     <Description>Shared application contracts for Kinevor feature modules: repositories, unit of work, current user, paging and exceptions.</Description>
     <PackageTags>kinevor;platform;application;cqrs</PackageTags>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <PackageProjectUrl>https://github.com/SoftwareDeveloper98/kinevor-platform</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/SoftwareDeveloper98/kinevor</PackageProjectUrl>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="MediatR" Version="12.4.1" />

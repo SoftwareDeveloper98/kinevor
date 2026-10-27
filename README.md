@@ -1,173 +1,308 @@
 # Kinevor
 
+**A modular gym-operations platform built as a portfolio-grade monorepo.**
+
 [![CI](https://github.com/SoftwareDeveloper98/kinevor/actions/workflows/ci.yml/badge.svg)](https://github.com/SoftwareDeveloper98/kinevor/actions/workflows/ci.yml)
+[![.NET](https://img.shields.io/badge/.NET-9-512BD4?logo=dotnet)](https://dotnet.microsoft.com/)
+[![Angular](https://img.shields.io/badge/Angular-21-DD0031?logo=angular)](https://angular.dev/)
+[![Flutter](https://img.shields.io/badge/Flutter-3.35%2B-02569B?logo=flutter)](https://flutter.dev/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-A modular gym-management platform, delivered as one monorepo. **Kinevor** pairs
-movement (*kinetic*) with vigor — the platform is built for momentum.
+Kinevor is a complete reference implementation of a gym-management product:
+**ten independently buildable business modules** on a **shared .NET and Angular
+platform kernel**. Each module owns its domain rules, HTTP API, SQLite database
+and test suite; where the capability needs a UI it also ships a standalone
+Angular library and/or a Flutter package.
 
-The repository is a **shared platform kernel** plus **ten vertical feature
-modules**. Each module is a self-contained slice that ships the same three
-consumers — a .NET API, a standalone Angular library with a runnable demo, and a
-Flutter package — so every layer can be built, tested and reused independently,
-while the monorepo keeps the whole product in one place.
+The repository is a showcase of service boundaries, layered backend design,
+reusable frontend packages and automated verification — not a distributed
+system.
+
+![Kinevor public website](docs/screenshots/public-web.png)
+
+> **Runtime boundary:** a monorepo is a source-control boundary, not a runtime
+> one. The modules share versioned platform contracts, but they do **not** call
+> each other, share databases or require each other at runtime. Every demo API
+> starts on its own port with its own seeded SQLite file. See
+> [ARCHITECTURE.md](ARCHITECTURE.md).
+
+## At a glance
+
+| | |
+| --- | --- |
+| Business modules | 10, plus a shared platform kernel |
+| Backend | 10 ASP.NET Core 9 APIs, EF Core 9, SQLite, MediatR |
+| Web | 9 Angular 21 libraries with runnable demos |
+| Mobile | 9 Flutter packages with runnable examples |
+| Automated tests | **435** — 208 .NET, 99 Angular, 128 Flutter |
+| Screenshots | 57 captured from the running applications |
+| CI | Platform build plus backend, web and mobile module matrices |
+
+## Services
+
+| Service | Responsibility | API | Web | Flutter | Demo API |
+| --- | --- | :---: | :---: | :---: | ---: |
+| [`kinevor-platform`](kinevor-platform/README.md) | Shared kernel: domain primitives, application contracts, API envelope, Angular services | — | ✔ | — | — |
+| [`kinevor-identity-access`](kinevor-identity-access/README.md) | JWT authentication, refresh tokens and role-aware sessions | ✔ | ✔ | ✔ | 5082 |
+| [`kinevor-members`](kinevor-members/README.md) | Member records, health context, progress, consents and privacy rights | ✔ | ✔ | ✔ | 5083 |
+| [`kinevor-memberships`](kinevor-memberships/README.md) | Plans, subscriptions, renewal and benefit snapshots | ✔ | ✔ | ✔ | 5084 |
+| [`kinevor-classes-bookings`](kinevor-classes-bookings/README.md) | Timetable, capacity, bookings and waitlists | ✔ | ✔ | ✔ | 5085 |
+| [`kinevor-checkins-access`](kinevor-checkins-access/README.md) | Eligibility rules, check-in/out, occupancy and visit history | ✔ | ✔ | ✔ | 5086 |
+| [`kinevor-payments-billing`](kinevor-payments-billing/README.md) | Invoices, simulated payments, refunds and revenue reporting | ✔ | ✔ | ✔ | 5087 |
+| [`kinevor-notifications`](kinevor-notifications/README.md) | Inbox, delivery records, preferences, templates and suppressions | ✔ | — | ✔ | 5088 |
+| [`kinevor-staff-dashboard`](kinevor-staff-dashboard/README.md) | Branch-scoped KPIs, trends, occupancy and operational alerts | ✔ | ✔ | ✔ | 5089 |
+| [`kinevor-trainers`](kinevor-trainers/README.md) | Trainer directory, profiles and public-facing roster | ✔ | ✔ | ✔ | 5081 |
+| [`kinevor-public-site`](kinevor-public-site/README.md) | Marketing site, plans, timetable and trial capture | ✔ | ✔ | — | 5090 |
+
+`kinevor-notifications` is API-and-mobile only, `kinevor-public-site` is
+web-and-API only, and the platform kernel has no runnable host. Each module
+README documents its ports, routes, seeded data and demo credentials.
+
+## Screenshots
+
+| Public site | Staff dashboard |
+| --- | --- |
+| ![Public website landing page](docs/screenshots/public-web.png) | ![Staff operations dashboard](docs/screenshots/dashboard-web.png) |
+
+| Members | Classes & bookings |
+| --- | --- |
+| ![Member directory](docs/screenshots/members-web.png) | ![Class schedule](docs/screenshots/classes-web.png) |
+
+| Check-ins & access | Payments & billing |
+| --- | --- |
+| ![Front-desk check-in](docs/screenshots/checkins-web.png) | ![Billing dashboard](docs/screenshots/billing-web.png) |
+
+| Members on mobile | Classes on mobile |
+| --- | --- |
+| ![Member profile on mobile](docs/screenshots/members-mobile.png) | ![Class schedule on mobile](docs/screenshots/classes-mobile.png) |
+
+The full set of 57 screenshots — Swagger explorers, staff workflows, member
+journeys and mobile states — lives in each module's `docs/screenshots` folder.
 
 ## Architecture
 
 ```mermaid
 flowchart TB
-    subgraph Platform["kinevor-platform · shared kernel"]
-        P1[Kinevor.Platform.Domain]
-        P2[Kinevor.Platform.Application]
-        P3[Kinevor.Platform.Api]
-        P4["@softwaredeveloper98/kinevor-platform-web"]
+    subgraph Platform["Platform kernel · build-time contracts"]
+        Domain["Kinevor.Platform.Domain"]
+        App["Kinevor.Platform.Application"]
+        Api["Kinevor.Platform.Api"]
+        Web["@softwaredeveloper98/kinevor-platform-web"]
     end
 
-    subgraph Modules["kinevor modules · vertical slices"]
-        ID[identity-access]
-        MB[members]
-        MS[memberships]
-        CB[classes-bookings]
-        CK[checkins-access]
-        PB[payments-billing]
-        NT[notifications]
-        TR[trainers]
-        SD[staff-dashboard]
-        PS[public-site]
+    subgraph Services["Independent services · no runtime coupling"]
+        ID["Identity & Access"]
+        MB["Members"]
+        MS["Memberships"]
+        CB["Classes & Bookings"]
+        CK["Check-ins & Access"]
+        PB["Payments & Billing"]
+        NT["Notifications"]
+        TR["Trainers"]
+        SD["Staff Dashboard"]
+        PS["Public Site"]
     end
 
-    Modules -->|consumes| Platform
+    Services -.->|"reference at build time"| Platform
 ```
 
-Every module depends on the platform packages (NuGet `Kinevor.Platform.*` and the
-`@softwaredeveloper98/kinevor-platform-web` Angular package) for the API envelope,
-authorization policies, current-user abstractions, i18n, notices and theming. The
-platform kernel has no product UI of its own.
+The platform supplies the domain base types, repository and unit-of-work
+contracts, `ApiResponse<T>` envelope, authorization policies and Angular
+authentication, i18n, notice and theme services. Modules reference the platform
+NuGet packages and the Angular package by version. They never reference each
+other.
 
-## Module map
+Each runtime service has:
 
-| Module | Purpose | Backend | Web | Flutter |
-| --- | --- | :---: | :---: | :---: |
-| [`kinevor-platform`](kinevor-platform/README.md) | Shared kernel: domain, application, API and Angular building blocks | ✔ | ✔ | — |
-| [`kinevor-identity-access`](kinevor-identity-access/README.md) | JWT auth and role-aware session management | ✔ | ✔ | ✔ |
-| [`kinevor-members`](kinevor-members/README.md) | Member management vertical slice | ✔ | ✔ | ✔ |
-| [`kinevor-memberships`](kinevor-memberships/README.md) | Membership plans, recurring cover and subscription lifecycle | ✔ | ✔ | ✔ |
-| [`kinevor-classes-bookings`](kinevor-classes-bookings/README.md) | Class scheduling, capacity, booking and waitlist | ✔ | ✔ | ✔ |
-| [`kinevor-checkins-access`](kinevor-checkins-access/README.md) | Check-in, access eligibility, live occupancy and visit history | ✔ | ✔ | ✔ |
-| [`kinevor-payments-billing`](kinevor-payments-billing/README.md) | Invoices, payments, refunds and revenue reporting | ✔ | ✔ | ✔ |
-| [`kinevor-notifications`](kinevor-notifications/README.md) | Notification vertical slice (e-mail and push) | ✔ | — | ✔ |
-| [`kinevor-trainers`](kinevor-trainers/README.md) | Trainer directory vertical slice | ✔ | ✔ | ✔ |
-| [`kinevor-staff-dashboard`](kinevor-staff-dashboard/README.md) | Operating dashboard for the gym | ✔ | ✔ | ✔ |
-| [`kinevor-public-site`](kinevor-public-site/README.md) | Public marketing site (Angular, SSR) | ✔ | ✔ | — |
+- its own ASP.NET Core host, dependency-injection composition and port;
+- its own SQLite database, created and seeded on first run;
+- its own xUnit API and domain tests;
+- its own Angular library and/or Flutter package for its clients.
 
-Each module README contains its own architecture diagram, endpoints, screenshots,
-quick-start and test commands.
+[ARCHITECTURE.md](ARCHITECTURE.md) covers the layering conventions, package
+workflow, module anatomy and the optional path to a gateway or shared deployment
+if the system ever needs one.
 
-## Tech stack
+## Technology
 
-| Layer | Technology |
+| Layer | Stack |
 | --- | --- |
-| Backend | ASP.NET Core 9, EF Core 9, MediatR, FluentValidation, JWT, PBKDF2/AES-256-GCM |
-| Web | Angular 21 (standalone components, signals, `@if`/`@for`), Angular Material, SSR |
-| Mobile | Flutter 3, BLoC + Clean Architecture, go_router, gen-l10n (en/ar + RTL) |
-| Packages | NuGet (GitHub Packages), npm (GitHub Packages), Flutter (release archive) |
-| CI | GitHub Actions (per-ecosystem build, test and pack jobs) |
+| Backend | ASP.NET Core 9 (`net9.0`), EF Core 9, SQLite, MediatR 12, JWT bearer, PBKDF2 password hashing, Swashbuckle, xUnit and `WebApplicationFactory` |
+| Web | Angular 21 with standalone components, signals, typed gateways/facades, Angular Material and Vitest |
+| Mobile | Flutter 3.35+ (verified with 3.47.8), Material 3, typed HTTP client and repository, widget and golden tests |
+| Tooling | GitHub Actions matrices, NuGet, npm, Dart/Flutter, Mermaid diagrams |
+
+The Angular platform package includes an English/Arabic localization service with
+RTL support and locale-aware dates, numbers and currency. Individual demo
+screens are English-first.
 
 ## Repository layout
 
 ```text
 kinevor/
-├── kinevor-platform/          shared kernel (Domain / Application / Api / Web)
-├── kinevor-identity-access/   backend/ · web/ · mobile/ · docs/
-├── kinevor-members/           backend/ · web/ · mobile/ · docs/
-├── kinevor-memberships/       backend/ · web/ · mobile/ · docs/
-├── kinevor-classes-bookings/  backend/ · web/ · mobile/ · docs/
-├── kinevor-checkins-access/   backend/ · web/ · mobile/ · docs/
-├── kinevor-payments-billing/  backend/ · web/ · mobile/ · docs/
-├── kinevor-notifications/     backend/ · mobile/ · docs/
-├── kinevor-trainers/          backend/ · web/ · mobile/ · docs/
-├── kinevor-staff-dashboard/   backend/ · web/ · mobile/ · docs/
-├── kinevor-public-site/       backend/ · web/ · docs/
-├── ARCHITECTURE.md            system overview and conventions
-└── .github/workflows/ci.yml   monorepo CI
+├── kinevor-platform/           shared kernel: .NET packages + Angular library
+├── kinevor-identity-access/    backend/ · web/ · mobile/ · docs/
+├── kinevor-members/            backend/ · web/ · mobile/ · docs/
+├── kinevor-memberships/        backend/ · web/ · mobile/ · docs/
+├── kinevor-classes-bookings/   backend/ · web/ · mobile/ · docs/
+├── kinevor-checkins-access/    backend/ · web/ · mobile/ · docs/
+├── kinevor-payments-billing/   backend/ · web/ · mobile/ · docs/
+├── kinevor-notifications/      backend/ · mobile/ · docs/
+├── kinevor-trainers/           backend/ · web/ · mobile/ · docs/
+├── kinevor-staff-dashboard/    backend/ · web/ · mobile/ · docs/
+├── kinevor-public-site/        backend/ · web/ · docs/
+├── docs/screenshots/           portfolio showcase images
+├── .github/workflows/ci.yml    platform jobs + three module matrices
+├── ARCHITECTURE.md             design and conventions
+├── SECURITY.md                 security policy and demo caveats
+└── CHANGELOG.md                release history
 ```
 
 ## Quick start
 
 ### Prerequisites
 
-- .NET SDK 9 or 10 (solutions use `.slnx`)
+- .NET SDK 10 (the projects target `net9.0`; the ASP.NET Core 9 runtime is
+  required)
 - Node.js 22+ and npm 10+
-- Flutter 3.35+ (verified with 3.47.7)
+- Flutter 3.35+ for the mobile packages
 
-### 1. Build the platform packages
+### 1. Build the platform artifacts once
 
-The modules restore `Kinevor.Platform.*` and
-`@softwaredeveloper98/kinevor-platform-web` locally, so build the shared kernel
-once from the repo root:
+Modules restore the platform from the local feed and the local Angular build.
 
-```powershell
-# NuGet packages
-dotnet pack kinevor-platform\backend\Kinevor.Platform.slnx -c Release `
-  -o kinevor-platform\backend\artifacts\packages
+```bash
+dotnet pack kinevor-platform/backend/Kinevor.Platform.slnx -c Release \
+  -o kinevor-platform/backend/artifacts/packages
 
-# Angular package
-cd kinevor-platform\web
+cd kinevor-platform/web
 npm ci
 npm run build
-cd ..\..
+cd ../..
 ```
 
-### 2. Run a module
+### 2. Run a service
 
-Each module is self-contained. For example, identity & access:
+The members service is a good starting point:
 
-```powershell
-cd kinevor-identity-access
-dotnet run --project backend\samples\Kinevor.Modules.IdentityAccess.DemoApi   # http://localhost:5082/swagger
+```bash
+# API + Swagger on http://localhost:5083
+dotnet run --project kinevor-members/backend/samples/Kinevor.Modules.Members.DemoApi
 ```
 
-```powershell
-cd kinevor-identity-access\web
-npm run install:local    # points the workspace at the local platform build
-npm start                # http://localhost:4201
+```bash
+# Angular demo on http://localhost:4202
+cd kinevor-members/web
+npm run install:local
+npm start
 ```
 
-```powershell
-cd kinevor-identity-access\mobile\packages\kinevor_identity_access
+```bash
+# Flutter example (Chrome)
+cd kinevor-members/mobile/packages/kinevor_members
 flutter pub get
 cd example
 flutter run -d chrome
 ```
 
-See each module's README for its exact ports, routes, seeded accounts and
-screenshot-refresh commands.
+`npm run install:local` temporarily binds the module workspace to the sibling
+platform build, installs dependencies and restores `package.json`. Use the same
+pattern for any other module; see its README for the exact port and routes.
+
+The demo APIs use development-only role headers for screenshots and tests. They
+are intentionally not production authentication — see [SECURITY.md](SECURITY.md).
 
 ## Testing
 
-| Area | Command |
-| --- | --- |
-| Platform backend | `dotnet test kinevor-platform\backend\Kinevor.Platform.slnx -c Release` |
-| Platform web | `cd kinevor-platform\web; npm ci; npm run build` |
-| Module backend | `dotnet test kinevor-<module>\backend\Kinevor.Modules.<Module>.slnx -c Release` |
-| Module web | `cd kinevor-<module>\web; npm test` |
-| Module Flutter | `cd kinevor-<module>\mobile\packages\kinevor_<module>; flutter test` |
+All suites were run on 2026-10-27:
 
-The module backend and web jobs restore the platform packages from the local
-feed you packed in step 1, or from GitHub Packages when published.
+| Suite | Tests | Result |
+| --- | ---: | --- |
+| .NET — platform + 10 module APIs | 208 | ✅ all passed |
+| Angular — 9 module libraries | 99 | ✅ all passed |
+| Flutter — 9 packages | 128 | ✅ all passed |
+| **Total** | **435** | **✅ all passed** |
 
-## Publishing
+Run an individual suite:
 
-The platform kernel must be published before the modules (its version is `0.1.0`).
-Each module contains a `PUBLISHING.md` with its release checklist and consumer
-setup. See [`ARCHITECTURE.md`](ARCHITECTURE.md) for the shared conventions the
-modules follow.
+```bash
+# Backend (repeat per module)
+dotnet test kinevor-platform/backend/Kinevor.Platform.slnx -c Release
+dotnet test kinevor-members/backend/Kinevor.Modules.Members.slnx -c Release
 
-## Security
+# Web
+cd kinevor-members/web
+npm run install:local
+npm test
 
-Never commit `.env` files, PATs or signing keys — the root `.gitignore` excludes
-them. Demo credentials and demo signing keys are Development-only and are
-documented per module. Report security issues privately to the repository owner.
+# Mobile
+cd kinevor-members/mobile/packages/kinevor_members
+flutter test
+```
+
+The backend tests cover domain rules, handlers and HTTP endpoints; web tests
+cover gateways, facades and components; Flutter tests cover API clients, screen
+states and golden layouts.
+
+## Continuous integration
+
+The [CI workflow](.github/workflows/ci.yml) runs on every push and pull request:
+
+1. **Platform** — restores, builds, tests and packs the .NET kernel; builds the
+   Angular package; publishes both as workflow artifacts.
+2. **Module backend matrix** — each API restores the platform from the packed
+   NuGet artifact, then builds and tests independently.
+3. **Module web matrix** — each Angular workspace consumes the built platform
+   package, then runs its tests and library/demo builds.
+4. **Module mobile matrix** — each Flutter package runs its widget and golden
+   tests.
+
+This proves the monorepo is not a coupled build: every service is verified as a
+standalone unit.
+
+## Design highlights
+
+- **Explicit service boundaries** — one business capability per module, no
+  cross-module project references.
+- **Reusable contracts** — platform packages keep the response envelope,
+  authorization policies and client services consistent.
+- **Test-driven slices** — domain, handler, endpoint, component and golden tests
+  live next to the code they verify.
+- **Runnable documentation** — every module ships a seeded demo API, a web demo
+  and/or a mobile example, plus Swagger and screenshots.
+- **Realistic workflows** — masked member data, consent history, waitlists,
+  access rules, refunds, occupancy and billing KPIs.
+
+## Scope and limitations
+
+This is a portfolio reference implementation, deliberately scoped:
+
+- Services are independent and **not orchestrated**; there is no API gateway,
+  message bus, Docker Compose stack or cross-service transaction.
+- Payments are simulated; notifications do not call an external e-mail or push
+  provider.
+- SQLite is used for zero-setup demos, not for production scale.
+- Demo authentication headers are development-only and must never be enabled in
+  production.
+- Package publishing to GitHub Packages is optional and documented in each
+  module's `PUBLISHING.md`; it is not required to run the repository.
+
+## Documentation
+
+- [Architecture and conventions](ARCHITECTURE.md)
+- [Security policy](SECURITY.md)
+- [Changelog](CHANGELOG.md)
+- Module READMEs: [platform](kinevor-platform/README.md) ·
+  [identity](kinevor-identity-access/README.md) ·
+  [members](kinevor-members/README.md) ·
+  [memberships](kinevor-memberships/README.md) ·
+  [classes](kinevor-classes-bookings/README.md) ·
+  [check-ins](kinevor-checkins-access/README.md) ·
+  [payments](kinevor-payments-billing/README.md) ·
+  [notifications](kinevor-notifications/README.md) ·
+  [trainers](kinevor-trainers/README.md) ·
+  [dashboard](kinevor-staff-dashboard/README.md) ·
+  [public site](kinevor-public-site/README.md)
 
 ## License
 

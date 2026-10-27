@@ -4,9 +4,9 @@ Angular 21 member-facing membership UI for Kinevor. The package ships a plan
 catalogue, a current-membership dashboard with history, and a detail page with
 freeze, resume, renew and cancel actions.
 
-## GitHub Packages access
+## Registry access (optional)
 
-This package is private. Configure the scope and token before installing:
+This package is built inside the monorepo. If you publish it to a private registry, configure the scope and token before installing:
 
 ```ini
 @softwaredeveloper98:registry=https://npm.pkg.github.com

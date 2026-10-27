@@ -4,9 +4,9 @@ Angular 21 public website for Kinevor gyms. The library ships a typed gateway,
 facade, provider, routes and five standalone screens: landing, plans, trainers,
 timetable and free-trial capture.
 
-## GitHub Packages access
+## Registry access (optional)
 
-This package is private. Configure the scope and token before installing:
+This package is built inside the monorepo. If you publish it to a private registry, configure the scope and token before installing:
 
 ```ini
 @softwaredeveloper98:registry=https://npm.pkg.github.com

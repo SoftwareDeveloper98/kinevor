@@ -4,9 +4,9 @@ Standalone Angular 21 library for the Kinevor staff dashboard. It ships the
 executive overview and alert inbox, a typed HTTP gateway, a signal-based facade,
 an injectable provider and ready-made routes.
 
-## GitHub Packages access
+## Registry access (optional)
 
-This package is private. Configure the scope and token before installing:
+This package is built inside the monorepo. If you publish it to a private registry, configure the scope and token before installing:
 
 ```ini
 @softwaredeveloper98:registry=https://npm.pkg.github.com

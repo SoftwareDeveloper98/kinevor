@@ -3,11 +3,9 @@
 Membership plans, recurring cover and the subscription lifecycle for the Kinevor
 gym platform: a .NET 9 API, a standalone Angular 21 library and demo, and a
 Flutter package with a runnable example. Every layer can be consumed
-independently, and the demo runs locally without the original monorepo.
+independently, and the demo runs locally from this monorepo.
 
-[![CI](https://github.com/SoftwareDeveloper98/kinevor-memberships/actions/workflows/ci.yml/badge.svg)](https://github.com/SoftwareDeveloper98/kinevor-memberships/actions/workflows/ci.yml)
-[![NuGet](https://img.shields.io/badge/NuGet-Kinevor.Modules.Memberships-004880?logo=nuget)](https://github.com/SoftwareDeveloper98/kinevor-memberships/pkgs/nuget/Kinevor.Modules.Memberships)
-[![npm](https://img.shields.io/badge/npm-%40softwaredeveloper98%2Fkinevor--memberships--web-cb3837?logo=npm)](https://github.com/SoftwareDeveloper98/kinevor-memberships/pkgs/npm/kinevor-memberships-web)
+[![CI](https://github.com/SoftwareDeveloper98/kinevor/actions/workflows/ci.yml/badge.svg)](https://github.com/SoftwareDeveloper98/kinevor/actions/workflows/ci.yml)
 [![Flutter](https://img.shields.io/badge/Flutter-3.35%2B-02569B?logo=flutter)](https://flutter.dev)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
@@ -40,7 +38,7 @@ flowchart LR
     APP --> D[Domain<br/>Membership + plan snapshots]
     APP --> R[Repositories]
     R --> EF[EF Core]
-    EF --> DB[(SQLite demo<br/>PostgreSQL in production)]
+    EF --> DB[(SQLite demo)]
     A -.reuses.-> P[Kinevor.Platform<br/>envelope, policies, current user]
 ```
 
@@ -127,6 +125,8 @@ subscription.
 
 ## Quick start
 
+The commands below use PowerShell; on macOS or Linux use forward slashes.
+
 ### Prerequisites
 
 - .NET SDK 10 (the solution uses `.slnx`) and the ASP.NET Core 9 runtime.
@@ -135,16 +135,15 @@ subscription.
 
 ### 1. Build the platform packages
 
-The backend restores `Kinevor.Platform.*` from the sibling platform repository's
-local package feed. Clone it next to this repository and pack it once:
+The backend restores `Kinevor.Platform.*` from the sibling platform folder's
+local package feed. Pack it once:
 
 ```powershell
-git clone https://github.com/SoftwareDeveloper98/kinevor-platform.git ..\kinevor-platform
 dotnet pack ..\kinevor-platform\backend\Kinevor.Platform.slnx -c Release `
   -o ..\kinevor-platform\backend\artifacts\packages
 ```
 
-If the platform packages are published to GitHub Packages, configure that source
+If the platform packages are published to a registry, configure that source
 instead and skip the local pack step.
 
 ### 2. Run the API
@@ -160,10 +159,10 @@ database and seeds plans and subscriptions on first run.
 
 | Plan | Tier | Billing | Price | State |
 | --- | --- | --- | --- | --- |
-| Foundation | Basic | Monthly | £39 | Active |
-| Performance | Premium | Quarterly | £129 | Active |
-| Elite | Elite | Annual | £1,290 | Active |
-| Corporate | Standard | Annual | £990 | Inactive |
+| Foundation | Basic | Monthly | Â£39 | Active |
+| Performance | Premium | Quarterly | Â£129 | Active |
+| Elite | Elite | Annual | Â£1,290 | Active |
+| Corporate | Standard | Annual | Â£990 | Inactive |
 
 | Member | Member ID | Current cover |
 | --- | --- | --- |
@@ -201,7 +200,7 @@ npm start
 
 `npm run install:local` temporarily points the workspace at the local platform
 build, installs dependencies, restores `package.json`, and removes the generated
-lockfile. When the package is published to GitHub Packages, authenticate the
+lockfile. If the platform package is published to a registry, authenticate the
 scope in `.npmrc` and use the normal path instead:
 
 ```powershell
@@ -275,7 +274,7 @@ Copy-Item test\goldens\membership_plans.png `
 The backend suite covers plan validation, overlapping starts, freezing, resuming,
 renewals, cancellation, ownership and the seeded demo host. The web suite covers
 the HTTP gateway and facade with Vitest. The Flutter suite covers the HTTP client,
-dashboard, catalogue and lifecycle screens, plus 390×844 golden images.
+dashboard, catalogue and lifecycle screens, plus 390Ã—844 golden images.
 
 ## Packages
 
@@ -286,29 +285,28 @@ dashboard, catalogue and lifecycle screens, plus 390×844 golden images.
 | npm | `@softwaredeveloper98/kinevor-memberships-web` | Angular components, gateway, facade, provider and routes |
 | Flutter | `kinevor_memberships` | API client, repository, screens, theme and strings |
 
-Install the Angular library after authenticating to GitHub Packages:
+If the Angular package is published to a registry, install it with:
 
 ```powershell
 npm install @softwaredeveloper98/kinevor-memberships-web
 ```
 
-Consume the Flutter package from the repository tag:
+Consume the Flutter package from the monorepo by path or git:
 
 ```yaml
 dependencies:
   kinevor_memberships:
     git:
-      url: https://github.com/SoftwareDeveloper98/kinevor-memberships.git
+      url: https://github.com/SoftwareDeveloper98/kinevor.git
       path: mobile/packages/kinevor_memberships
-      ref: v0.1.0
+      ref: main
 ```
 
 Both clients use the same API contract. The Angular package expects
 `@softwaredeveloper98/kinevor-platform-web` as a peer dependency.
 
-CI restores the platform NuGet and npm packages from GitHub Packages. Publish
-`kinevor-platform` `0.1.0` first, or the backend and web jobs will fail at
-restore/install.
+The monorepo CI packs the platform once and feeds the artifacts to each module
+job. Modules do not need a published registry to build.
 
 ## Design decisions
 
@@ -349,30 +347,27 @@ kinevor-memberships/
     packages/kinevor_memberships/example/     runnable demo
   docs/
     screenshots/
-  .github/workflows/
 ```
 
 ## Related modules
 
-- [Kinevor Platform](https://github.com/SoftwareDeveloper98/kinevor-platform) -
+- [Kinevor Platform](../kinevor-platform) -
   shared API, auth, i18n, notices and Angular primitives.
-- [Kinevor Identity & Access](https://github.com/SoftwareDeveloper98/kinevor-identity-access)
-- [Kinevor Members](https://github.com/SoftwareDeveloper98/kinevor-members)
-- [Kinevor Trainers](https://github.com/SoftwareDeveloper98/kinevor-trainers)
-- [Kinevor Classes & Bookings](https://github.com/SoftwareDeveloper98/kinevor-classes-bookings)
-- [Kinevor Check-ins & Access](https://github.com/SoftwareDeveloper98/kinevor-checkins-access)
-- [Kinevor Payments & Billing](https://github.com/SoftwareDeveloper98/kinevor-payments-billing)
-- [Kinevor Notifications](https://github.com/SoftwareDeveloper98/kinevor-notifications)
-- [Kinevor Public Site](https://github.com/SoftwareDeveloper98/kinevor-public-site)
-- [Kinevor Staff Dashboard](https://github.com/SoftwareDeveloper98/kinevor-staff-dashboard)
+- [Kinevor Identity & Access](../kinevor-identity-access)
+- [Kinevor Members](../kinevor-members)
+- [Kinevor Trainers](../kinevor-trainers)
+- [Kinevor Classes & Bookings](../kinevor-classes-bookings)
+- [Kinevor Check-ins & Access](../kinevor-checkins-access)
+- [Kinevor Payments & Billing](../kinevor-payments-billing)
+- [Kinevor Notifications](../kinevor-notifications)
+- [Kinevor Public Site](../kinevor-public-site)
+- [Kinevor Staff Dashboard](../kinevor-staff-dashboard)
 
-## Release Checklist
+## Verification
 
-- Confirm `kinevor-platform` `v0.1.0` is published.
-- Add the `KINEVOR_PACKAGES_TOKEN` repository secret.
-- Push tag `v0.1.0` after CI is green.
-
-See [PUBLISHING.md](PUBLISHING.md) for the complete release and consumer setup.
+- Run this module's backend, web and mobile suites (commands above).
+- The root CI runs the module in its backend, web and/or mobile matrix.
+- See [PUBLISHING.md](PUBLISHING.md) only if you intend to distribute packages.
 
 ## Security
 

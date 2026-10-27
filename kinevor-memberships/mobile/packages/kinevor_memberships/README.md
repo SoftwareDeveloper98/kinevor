@@ -17,9 +17,9 @@ The package is not published to pub.dev yet. Add it from the repository tag:
 dependencies:
   kinevor_memberships:
     git:
-      url: https://github.com/SoftwareDeveloper98/kinevor-memberships.git
+      url: https://github.com/SoftwareDeveloper98/kinevor.git
       path: mobile/packages/kinevor_memberships
-      ref: v0.1.0
+      ref: main
 ```
 
 For local development, use a path dependency:

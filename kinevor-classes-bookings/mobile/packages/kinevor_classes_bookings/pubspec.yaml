@@ -2,8 +2,8 @@ name: kinevor_classes_bookings
 description: Standalone Flutter class schedule, booking and waitlist UI for Kinevor.
 version: 0.1.0
 publish_to: none
-repository: https://github.com/SoftwareDeveloper98/kinevor-classes-bookings
-issue_tracker: https://github.com/SoftwareDeveloper98/kinevor-classes-bookings/issues
+repository: https://github.com/SoftwareDeveloper98/kinevor
+issue_tracker: https://github.com/SoftwareDeveloper98/kinevor/issues
 
 environment:
   sdk: '>=3.9.0 <4.0.0'
