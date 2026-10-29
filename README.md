@@ -3,6 +3,7 @@
 **A modular gym-operations platform in one repository.**
 
 [![CI](https://github.com/SoftwareDeveloper98/kinevor/actions/workflows/ci.yml/badge.svg)](https://github.com/SoftwareDeveloper98/kinevor/actions/workflows/ci.yml)
+[![Release](https://img.shields.io/github/v/release/SoftwareDeveloper98/kinevor?label=release)](https://github.com/SoftwareDeveloper98/kinevor/releases/latest)
 [![.NET](https://img.shields.io/badge/.NET-9-512BD4?logo=dotnet)](https://dotnet.microsoft.com/)
 [![Angular](https://img.shields.io/badge/Angular-21-DD0031?logo=angular)](https://angular.dev/)
 [![Flutter](https://img.shields.io/badge/Flutter-3.35%2B-02569B?logo=flutter)](https://flutter.dev/)

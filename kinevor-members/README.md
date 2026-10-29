@@ -113,7 +113,12 @@ contacts until `reveal=true` is requested by an authorised staff user.
 
 ### API
 
+<details>
+<summary>Swagger explorer</summary>
+
 ![Swagger UI](docs/screenshots/api-swagger.png)
+
+</details>
 
 ## Quick start
 

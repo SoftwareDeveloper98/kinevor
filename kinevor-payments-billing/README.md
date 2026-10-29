@@ -123,7 +123,12 @@ months. It accepts an explicit `from`/`to` period of at most 24 months.
 
 ### API
 
+<details>
+<summary>Swagger explorer</summary>
+
 ![Swagger UI](docs/screenshots/api-swagger.png)
+
+</details>
 
 ## Quick start
 

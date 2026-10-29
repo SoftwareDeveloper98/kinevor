@@ -118,7 +118,12 @@ the authenticated member; requesting another member's notification returns
 
 ### API
 
+<details>
+<summary>Swagger explorer</summary>
+
 ![Swagger UI](docs/screenshots/api-swagger.png)
+
+</details>
 
 ## Quick start
 

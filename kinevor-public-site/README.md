@@ -1,9 +1,9 @@
 # Kinevor Public Site
 
-A complete public website for Kinevor: a coach-led strength and movement gym
-with three New York locations. This module contains a tested .NET module and
-demo API for public content and lead capture, plus an Angular 21 component
-library and reference website.
+A public website for Kinevor: a coach-led strength and movement gym with three
+New York locations. This module contains a tested .NET module and demo API for
+public content and lead capture, plus an Angular 21 component library and
+reference website.
 
 The experience is editorial rather than templated: local typography, warm paper
 surfaces, a dark gym-floor palette, coach-led class discovery and a free-trial
@@ -14,13 +14,18 @@ gym locations, plans, coaches and editorial content are fictional demo data.
 
 | Landing | Memberships |
 | --- | --- |
-| ![Kinevor landing page](docs/screenshots/web-landing.png) | ![Kinevor membership plans](docs/screenshots/web-plans.png) |
+| [![Kinevor landing page](docs/screenshots/web-landing-preview.png)](docs/screenshots/web-landing.png) | ![Kinevor membership plans](docs/screenshots/web-plans.png) |
 
 | Timetable | Free trial |
 | --- | --- |
 | ![Kinevor class timetable](docs/screenshots/web-schedule.png) | ![Kinevor trial request form](docs/screenshots/web-trial.png) |
 
+<details>
+<summary>Swagger explorer</summary>
+
 ![Kinevor Public Site API in Swagger](docs/screenshots/api-swagger.png)
+
+</details>
 
 ## What It Includes
 
