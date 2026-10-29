@@ -1,9 +1,9 @@
 # Kinevor Payments & Billing
 
 Invoices, simulated payments, refunds and revenue reporting for the Kinevor gym
-platform: a .NET 9 API, a standalone Angular library and demo, and a Flutter
-package with a runnable example. Every layer can be consumed independently, and
-the demo runs locally from this monorepo.
+platform, delivered as a .NET 9 API, a standalone Angular library and demo, and
+a Flutter package with a runnable example. The layers are independent, and the
+demo runs from this monorepo.
 
 [![CI](https://github.com/SoftwareDeveloper98/kinevor/actions/workflows/ci.yml/badge.svg)](https://github.com/SoftwareDeveloper98/kinevor/actions/workflows/ci.yml)
 [![Flutter](https://img.shields.io/badge/Flutter-3.35%2B-02569B?logo=flutter)](https://flutter.dev)
@@ -42,10 +42,11 @@ flowchart LR
     A -.reuses.-> P[Kinevor.Platform<br/>envelope, policies, current user]
 ```
 
-The backend is organized into domain/application/API folders within a single project, with a separate EF Core persistence project. It depends
-on the published `Kinevor.Platform.*` packages for the response envelope,
-authorization policies, clock and current-user abstractions. The Angular and
-Flutter clients are thin presentation layers over a typed gateway/repository.
+The backend puts domain, application and API folders in one project and keeps
+EF Core persistence separate. It depends on the published `Kinevor.Platform.*`
+packages for the response envelope, authorization policies, clock and
+current-user abstractions. The Angular and Flutter clients are thin presentation
+layers over a typed gateway/repository.
 
 ## Features
 
@@ -132,7 +133,7 @@ The commands below use PowerShell; on macOS or Linux use forward slashes.
 
 - .NET SDK 10.0.100+ (pinned by `global.json`) and an ASP.NET Core 9.0+ runtime.
 - Node.js 22.12+ and npm 11+.
-- Flutter 3.35+ (the repository is verified with Flutter 3.47.7).
+- Flutter 3.35+ (the repository is verified with Flutter 3.47.8).
 
 ### 1. Build the platform packages
 

@@ -1,6 +1,5 @@
 /// User-facing labels used by the billing widgets.
 class BillingStrings {
-  /// Creates a label bundle.
   const BillingStrings({
     this.brand = 'Kinevor Billing',
     this.title = 'Billing',

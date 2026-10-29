@@ -3,7 +3,6 @@
 /// Extend or instantiate with localized values to translate the module
 /// without forking the widgets.
 class TrainersStrings {
-  /// Creates a label bundle.
   const TrainersStrings({
     this.title = 'Trainers',
     this.searchHint = 'Search trainer',

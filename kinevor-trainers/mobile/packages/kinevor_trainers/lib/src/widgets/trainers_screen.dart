@@ -20,7 +20,6 @@ class TrainersScreen extends StatelessWidget {
   /// Data source for the directory.
   final TrainersRepository repository;
 
-  /// Localized labels.
   final TrainersStrings strings;
 
   /// Optional tap handler; defaults to pushing [TrainerDetailPage].

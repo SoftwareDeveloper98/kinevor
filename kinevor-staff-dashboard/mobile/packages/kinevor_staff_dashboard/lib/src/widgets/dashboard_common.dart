@@ -24,7 +24,6 @@ class BranchSelector extends StatelessWidget {
   /// Called when the user selects a branch.
   final ValueChanged<String?> onSelected;
 
-  /// Localized labels.
   final StaffDashboardStrings strings;
 
   @override
@@ -117,7 +116,6 @@ class RangeToggle extends StatelessWidget {
   /// Called with the selected range.
   final ValueChanged<int> onChanged;
 
-  /// Localized labels.
   final StaffDashboardStrings strings;
 
   @override
@@ -213,7 +211,6 @@ class SeveritySummary extends StatelessWidget {
   /// Number of info alerts.
   final int info;
 
-  /// Localized labels.
   final StaffDashboardStrings strings;
 
   /// Selected severity filter.
@@ -368,7 +365,6 @@ class AlertCard extends StatelessWidget {
   /// Timestamp used to decide whether the task is overdue.
   final DateTime reference;
 
-  /// Localized labels.
   final StaffDashboardStrings strings;
 
   /// Whether to render the denser overview variant.

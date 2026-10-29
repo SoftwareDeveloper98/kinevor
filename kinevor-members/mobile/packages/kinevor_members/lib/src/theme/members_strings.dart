@@ -1,6 +1,5 @@
 /// User-facing labels used by the members widgets.
 class MembersStrings {
-  /// Creates a label bundle.
   const MembersStrings({
     this.brand = 'Kinevor Members',
     this.title = 'My membership',

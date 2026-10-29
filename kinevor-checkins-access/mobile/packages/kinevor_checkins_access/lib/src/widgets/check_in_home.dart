@@ -19,7 +19,6 @@ class KinevorCheckInsHome extends StatefulWidget {
   /// Data source used by both tabs.
   final CheckInsRepository repository;
 
-  /// Localized labels.
   final CheckInsStrings strings;
 
   /// Initial tab index, 0 for check-in and 1 for history.

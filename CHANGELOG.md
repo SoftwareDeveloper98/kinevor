@@ -28,7 +28,7 @@ All notable changes to Kinevor are documented here. The repository uses a single
 - 57 application screenshots covering web, mobile and API surfaces.
 - Monorepo CI: platform build/pack plus backend, web and mobile module matrices.
 - Per-module READMEs, changelogs, publishing guides and release workflows.
-- Root architecture, security and portfolio documentation.
+- Root architecture, security and project documentation.
 
 ### Verified
 

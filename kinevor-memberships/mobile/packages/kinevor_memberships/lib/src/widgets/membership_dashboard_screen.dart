@@ -22,7 +22,6 @@ class MembershipDashboardScreen extends StatefulWidget {
   /// Data source used for membership reads.
   final MembershipsRepository repository;
 
-  /// Localized labels.
   final MembershipsStrings strings;
 
   /// Optional host actions shown in the app bar, for example a demo switcher.

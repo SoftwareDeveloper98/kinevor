@@ -24,7 +24,6 @@ class MembershipDetailScreen extends StatefulWidget {
   /// Subscription to display.
   final String membershipId;
 
-  /// Localized labels.
   final MembershipsStrings strings;
 
   @override

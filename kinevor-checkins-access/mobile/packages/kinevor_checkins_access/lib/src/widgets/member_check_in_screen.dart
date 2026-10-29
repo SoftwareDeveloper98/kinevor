@@ -19,7 +19,6 @@ class MemberCheckInScreen extends StatefulWidget {
   /// Data source for status and visit actions.
   final CheckInsRepository repository;
 
-  /// Localized labels.
   final CheckInsStrings strings;
 
   /// Optional callback that opens the visit-history tab.

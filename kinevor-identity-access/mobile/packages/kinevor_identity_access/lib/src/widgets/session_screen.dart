@@ -30,7 +30,6 @@ class SessionScreen extends StatefulWidget {
   /// Called when rotation issues a new session.
   final ValueChanged<AuthSession>? onSessionChanged;
 
-  /// Localized labels.
   final IdentityAccessStrings strings;
 
   @override

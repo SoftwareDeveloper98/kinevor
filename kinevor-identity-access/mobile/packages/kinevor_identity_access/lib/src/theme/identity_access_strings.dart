@@ -1,6 +1,5 @@
 /// User-facing labels used by the identity widgets.
 class IdentityAccessStrings {
-  /// Creates a label bundle.
   const IdentityAccessStrings({
     this.brand = 'Kinevor Identity',
     this.welcome = 'Welcome back.',

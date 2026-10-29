@@ -1,6 +1,5 @@
 /// User-facing labels used by the notifications widgets.
 class NotificationsStrings {
-  /// Creates a label bundle.
   const NotificationsStrings({
     this.brand = 'Kinevor Notifications',
     this.inboxTitle = 'Inbox',

@@ -1,6 +1,6 @@
 # Kinevor
 
-**A modular gym-operations platform built as a portfolio-grade monorepo.**
+**A modular gym-operations platform in one repository.**
 
 [![CI](https://github.com/SoftwareDeveloper98/kinevor/actions/workflows/ci.yml/badge.svg)](https://github.com/SoftwareDeveloper98/kinevor/actions/workflows/ci.yml)
 [![.NET](https://img.shields.io/badge/.NET-9-512BD4?logo=dotnet)](https://dotnet.microsoft.com/)
@@ -8,14 +8,14 @@
 [![Flutter](https://img.shields.io/badge/Flutter-3.35%2B-02569B?logo=flutter)](https://flutter.dev/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-Kinevor is a complete reference implementation of a gym-management product:
+Kinevor is a reference implementation of a gym-management product:
 **ten independently buildable business modules** on a **shared .NET and Angular
 platform kernel**. Each module owns its domain rules, HTTP API, SQLite database
 and test suite; where the capability needs a UI it also ships a standalone
 Angular library and/or a Flutter package.
 
-The repository is a showcase of service boundaries, layered backend design,
-reusable frontend packages and automated verification — not a distributed
+The repository is built around service boundaries, layered backend design,
+reusable frontend packages and automated verification. It is not a distributed
 system.
 
 ![Kinevor public website](docs/screenshots/public-web.png)
@@ -77,7 +77,7 @@ README documents its ports, routes, seeded data and demo credentials.
 | ![Member profile on mobile](docs/screenshots/members-mobile.png) | ![Class schedule on mobile](docs/screenshots/classes-mobile.png) |
 
 The full set of 57 screenshots — Swagger explorers, staff workflows, member
-journeys and mobile states — lives in each module's `docs/screenshots` folder.
+screens and mobile states — lives in each module's `docs/screenshots` folder.
 
 ## Architecture
 
@@ -257,8 +257,7 @@ The [CI workflow](.github/workflows/ci.yml) runs on every push and pull request:
 4. **Module mobile matrix** — each Flutter package runs its widget and golden
    tests.
 
-This proves the monorepo is not a coupled build: every service is verified as a
-standalone unit.
+That is what the matrices show: every service is verified as a standalone unit.
 
 ## Design highlights
 
@@ -266,10 +265,10 @@ standalone unit.
   cross-module project references.
 - **Reusable contracts** — platform packages keep the response envelope,
   authorization policies and client services consistent.
-- **Test-driven slices** — domain, handler, endpoint, component and golden tests
-  live next to the code they verify.
-- **Runnable documentation** — every module ships a seeded demo API, a web demo
-  and/or a mobile example, plus Swagger and screenshots.
+- **Tests next to the code** — domain, handler, endpoint, component and golden
+  tests live beside what they verify.
+- **Working demos** — every module ships a seeded API, a web demo and/or a mobile
+  example, plus Swagger and screenshots.
 - **Realistic workflows** — masked member data, consent history, waitlists,
   access rules, refunds, occupancy and billing KPIs.
 

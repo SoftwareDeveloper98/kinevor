@@ -19,7 +19,6 @@ class VisitHistoryScreen extends StatefulWidget {
   /// Data source for visits and the monthly summary.
   final CheckInsRepository repository;
 
-  /// Localized labels.
   final CheckInsStrings strings;
 
   /// Number of visits requested per page.

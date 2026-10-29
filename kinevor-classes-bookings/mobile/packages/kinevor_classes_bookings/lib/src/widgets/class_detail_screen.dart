@@ -23,7 +23,6 @@ class ClassDetailScreen extends StatefulWidget {
   /// Class identifier to load.
   final String classId;
 
-  /// Localized labels.
   final ClassesBookingsStrings strings;
 
   /// Member name sent when booking a seat.

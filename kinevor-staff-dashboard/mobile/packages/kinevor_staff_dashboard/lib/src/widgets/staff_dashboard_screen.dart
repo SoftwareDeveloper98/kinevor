@@ -21,7 +21,6 @@ class StaffDashboardScreen extends StatefulWidget {
   /// Data source used for dashboard, alert and branch reads.
   final StaffDashboardRepository repository;
 
-  /// Localized labels.
   final StaffDashboardStrings strings;
 
   /// Optional branch selected on first load.

@@ -18,7 +18,6 @@ class NotificationPreferencesScreen extends StatefulWidget {
   /// Data source used for preferences and devices.
   final NotificationsRepository repository;
 
-  /// Localized labels.
   final NotificationsStrings strings;
 
   @override

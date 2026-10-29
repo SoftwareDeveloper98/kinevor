@@ -1,9 +1,9 @@
 # Kinevor Identity & Access
 
-JWT authentication and role-aware session management for the Kinevor gym
-platform: a .NET 9 API, a standalone Angular library and demo, and a Flutter
-package with a runnable example. Every layer can be consumed independently, and
-the demo runs locally from this monorepo.
+JWT authentication and role-aware sessions for the Kinevor gym platform. This
+module contains a .NET 9 API, a standalone Angular library and demo, and a
+Flutter package with a runnable example. Each layer works on its own; the demo
+runs from this monorepo.
 
 [![CI](https://github.com/SoftwareDeveloper98/kinevor/actions/workflows/ci.yml/badge.svg)](https://github.com/SoftwareDeveloper98/kinevor/actions/workflows/ci.yml)
 [![Flutter](https://img.shields.io/badge/Flutter-3.35%2B-02569B?logo=flutter)](https://flutter.dev)
@@ -102,7 +102,7 @@ The commands below use PowerShell; on macOS or Linux use forward slashes.
 
 - .NET SDK 10 (the solution uses `.slnx`) and the ASP.NET Core 9 runtime.
 - Node.js 22.12+ and npm 11+.
-- Flutter 3.35+ (the repository is verified with Flutter 3.47.7).
+- Flutter 3.35+ (the repository is verified with Flutter 3.47.8).
 
 ### 1. Build the platform packages
 

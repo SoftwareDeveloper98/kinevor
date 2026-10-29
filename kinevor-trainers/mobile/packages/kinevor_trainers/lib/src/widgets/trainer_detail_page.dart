@@ -27,7 +27,6 @@ class TrainerDetailPage extends StatefulWidget {
   /// Optional already-loaded record to render before the refresh completes.
   final Trainer? initialTrainer;
 
-  /// Localized labels.
   final TrainersStrings strings;
 
   @override

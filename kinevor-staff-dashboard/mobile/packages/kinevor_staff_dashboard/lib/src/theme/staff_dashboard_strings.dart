@@ -1,6 +1,5 @@
 /// User-facing labels used by the staff dashboard widgets.
 class StaffDashboardStrings {
-  /// Creates a label bundle.
   const StaffDashboardStrings({
     this.brand = 'Kinevor Staff',
     this.title = 'Staff dashboard',

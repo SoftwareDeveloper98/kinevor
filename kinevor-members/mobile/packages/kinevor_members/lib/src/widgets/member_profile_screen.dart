@@ -19,7 +19,6 @@ class MemberProfileScreen extends StatefulWidget {
   /// Data source used for profile, progress, consent and device reads.
   final MembersRepository repository;
 
-  /// Localized labels.
   final MembersStrings strings;
 
   @override

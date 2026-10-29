@@ -24,7 +24,6 @@ class LoginScreen extends StatefulWidget {
   /// Called with the issued session.
   final ValueChanged<AuthSession> onSignedIn;
 
-  /// Localized labels.
   final IdentityAccessStrings strings;
 
   /// Prefilled e-mail address.

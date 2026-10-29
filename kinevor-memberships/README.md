@@ -1,9 +1,9 @@
 # Kinevor Memberships
 
 Membership plans, recurring cover and the subscription lifecycle for the Kinevor
-gym platform: a .NET 9 API, a standalone Angular 21 library and demo, and a
-Flutter package with a runnable example. Every layer can be consumed
-independently, and the demo runs locally from this monorepo.
+gym platform. The module ships a .NET 9 API, a standalone Angular 21 library and
+demo, and a Flutter package with a runnable example. Each layer can be used on
+its own, and the demo runs locally from this monorepo.
 
 [![CI](https://github.com/SoftwareDeveloper98/kinevor/actions/workflows/ci.yml/badge.svg)](https://github.com/SoftwareDeveloper98/kinevor/actions/workflows/ci.yml)
 [![Flutter](https://img.shields.io/badge/Flutter-3.35%2B-02569B?logo=flutter)](https://flutter.dev)
@@ -42,10 +42,11 @@ flowchart LR
     A -.reuses.-> P[Kinevor.Platform<br/>envelope, policies, current user]
 ```
 
-The backend is organized into domain/application/API folders within a single project, with a separate EF Core persistence project. It depends
-on the published `Kinevor.Platform.*` packages for the response envelope,
-authorization policies and current-user abstractions. The Angular and Flutter
-clients are thin presentation layers over typed gateways/repositories.
+The backend puts domain, application and API folders in one project and keeps
+EF Core persistence separate. It depends on the published `Kinevor.Platform.*`
+packages for the response envelope, authorization policies and current-user
+abstractions. The Angular and Flutter clients are thin presentation layers over
+typed gateways/repositories.
 
 A subscription copies the plan name, tier, price, billing period and features at
 start. Later plan edits never rewrite history. Effective status is calculated
@@ -131,7 +132,7 @@ The commands below use PowerShell; on macOS or Linux use forward slashes.
 
 - .NET SDK 10 (the solution uses `.slnx`) and the ASP.NET Core 9 runtime.
 - Node.js 22.12+ and npm 11+.
-- Flutter 3.35+ (the repository is verified with Flutter 3.47.7).
+- Flutter 3.35+ (the repository is verified with Flutter 3.47.8).
 
 ### 1. Build the platform packages
 

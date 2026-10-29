@@ -22,7 +22,6 @@ class NotificationDetailScreen extends StatefulWidget {
   /// Identifier of the notification to open.
   final String notificationId;
 
-  /// Localized labels.
   final NotificationsStrings strings;
 
   @override

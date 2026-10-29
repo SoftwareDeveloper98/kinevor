@@ -1,6 +1,5 @@
 /// User-facing labels used by the classes and bookings widgets.
 class ClassesBookingsStrings {
-  /// Creates a label bundle.
   const ClassesBookingsStrings({
     this.brand = 'Kinevor Classes',
     this.title = 'Classes',

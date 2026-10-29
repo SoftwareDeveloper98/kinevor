@@ -21,7 +21,6 @@ class ClassScheduleScreen extends StatefulWidget {
   /// Data source used for classes and member bookings.
   final ClassesBookingsRepository repository;
 
-  /// Localized labels.
   final ClassesBookingsStrings strings;
 
   /// Member name sent when booking a seat.

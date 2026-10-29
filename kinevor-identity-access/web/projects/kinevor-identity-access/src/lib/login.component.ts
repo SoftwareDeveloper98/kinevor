@@ -34,7 +34,7 @@ import { IdentityAccessFacade } from './identity-access.facade';
           <h1 class="story-title">One secure door<br /><span>to every Kinevor app.</span></h1>
           <p class="story-lead">
             Short-lived access tokens, rotating refresh tokens and role-aware sessions.
-            Built for staff consoles, member apps and public booking journeys.
+            Built for staff consoles, member apps and public booking flows.
           </p>
 
           <div class="story-stats">
@@ -48,7 +48,7 @@ import { IdentityAccessFacade } from './identity-access.facade';
             </div>
             <div class="story-stat">
               <span class="stat-value">4 roles</span>
-              <span class="stat-label">Policy ready</span>
+              <span class="stat-label">Role policies</span>
             </div>
           </div>
 

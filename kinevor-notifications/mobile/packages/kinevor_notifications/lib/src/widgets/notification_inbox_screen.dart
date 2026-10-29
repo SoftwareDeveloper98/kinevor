@@ -20,7 +20,6 @@ class NotificationInboxScreen extends StatefulWidget {
   /// Data source used for notifications.
   final NotificationsRepository repository;
 
-  /// Localized labels.
   final NotificationsStrings strings;
 
   @override

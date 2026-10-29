@@ -20,7 +20,6 @@ class MembershipPlansScreen extends StatefulWidget {
   /// Data source used for plans, current cover and starts.
   final MembershipsRepository repository;
 
-  /// Localized labels.
   final MembershipsStrings strings;
 
   @override

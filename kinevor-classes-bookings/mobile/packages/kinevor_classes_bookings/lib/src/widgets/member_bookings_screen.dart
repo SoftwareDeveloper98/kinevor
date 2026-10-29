@@ -19,7 +19,6 @@ class MemberBookingsScreen extends StatefulWidget {
   /// Data source used for bookings and cancellations.
   final ClassesBookingsRepository repository;
 
-  /// Localized labels.
   final ClassesBookingsStrings strings;
 
   @override

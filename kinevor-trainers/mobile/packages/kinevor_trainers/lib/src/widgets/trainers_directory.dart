@@ -23,7 +23,6 @@ class TrainersDirectory extends StatefulWidget {
   /// Data source for the directory.
   final TrainersRepository repository;
 
-  /// Localized labels.
   final TrainersStrings strings;
 
   /// Called when a trainer card is tapped.

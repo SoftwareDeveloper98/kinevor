@@ -25,7 +25,7 @@ for a fix before public disclosure.
 
 ## Scope
 
-The repository is a portfolio/reference implementation. The following are
+The repository is a reference implementation. The following are
 **known, intentional limitations**, not vulnerabilities:
 
 - **Demo authentication** — every demo API accepts `X-Demo-Role`,

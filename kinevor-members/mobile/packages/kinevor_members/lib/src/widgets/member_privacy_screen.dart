@@ -18,7 +18,6 @@ class MemberPrivacyScreen extends StatefulWidget {
   /// Data source used for consent, device and privacy actions.
   final MembersRepository repository;
 
-  /// Localized labels.
   final MembersStrings strings;
 
   @override

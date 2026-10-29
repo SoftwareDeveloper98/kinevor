@@ -44,10 +44,11 @@ flowchart LR
     A -.reuses.-> P[Kinevor.Platform<br/>envelope, policies, current user]
 ```
 
-The backend is organized into domain/application/API folders within a single project, with a separate EF Core persistence project. It depends
-on the published `Kinevor.Platform.*` packages for the response envelope,
-authorization policies and current-user abstractions. The Flutter package is a
-thin presentation layer over a typed client and repository.
+The backend puts domain, application and API folders in one project and keeps
+EF Core persistence separate. It depends on the published `Kinevor.Platform.*`
+packages for the response envelope, authorization policies and current-user
+abstractions. The Flutter package is a thin presentation layer over a typed
+client and repository.
 
 ## Features
 
@@ -126,7 +127,7 @@ The commands below use PowerShell; on macOS or Linux use forward slashes.
 ### Prerequisites
 
 - .NET SDK 10 (the solution uses `.slnx`) and the ASP.NET Core 9 runtime.
-- Flutter 3.35+ (the repository is verified with Flutter 3.47.7).
+- Flutter 3.35+ (the repository is verified with Flutter 3.47.8).
 - Node.js is not required to build or test the repository.
 
 ### 1. Build the platform packages

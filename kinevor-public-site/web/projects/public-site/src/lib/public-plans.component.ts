@@ -104,7 +104,7 @@ import { formatMoney } from './public-site.utils';
                 <span class="included-number">02</span>
                 <span class="material-icons" aria-hidden="true">apartment</span>
                 <h3>Every location</h3>
-                <p>One membership unlocks Main, Downtown and Westside, from early mornings to late evenings.</p>
+                <p>One membership covers Main, Downtown and Westside, from early mornings to late evenings.</p>
               </article>
               <article>
                 <span class="included-number">03</span>

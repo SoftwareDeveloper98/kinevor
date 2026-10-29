@@ -1,6 +1,5 @@
 /// User-facing labels used by the memberships widgets.
 class MembershipsStrings {
-  /// Creates a label bundle.
   const MembershipsStrings({
     this.brand = 'Kinevor Memberships',
     this.dashboardTitle = 'My membership',
@@ -64,7 +63,7 @@ class MembershipsStrings {
     this.actionFailed = 'The request could not be completed.',
     this.noCurrent = 'No current membership',
     this.noCurrentBody =
-        'Choose a plan to unlock the gym floor, classes and member benefits.',
+        'Choose a plan for gym floor access, classes and member benefits.',
     this.noPlans = 'No plans available',
     this.noPlansBody = 'Check back soon. The plan catalogue is being updated.',
     this.unknown = 'Unknown',

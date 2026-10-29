@@ -17,7 +17,6 @@ class TrainerCard extends StatelessWidget {
   /// Trainer rendered by the card.
   final Trainer trainer;
 
-  /// Localized labels.
   final TrainersStrings strings;
 
   /// Called when the card is tapped.

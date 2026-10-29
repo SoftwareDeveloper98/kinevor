@@ -15,7 +15,6 @@ class MembershipStatusChip extends StatelessWidget {
   /// Lifecycle status returned by the API.
   final String status;
 
-  /// Localized labels.
   final MembershipsStrings strings;
 
   @override
@@ -65,7 +64,6 @@ class MembershipErrorState extends StatelessWidget {
   /// Failure message.
   final String message;
 
-  /// Localized labels.
   final MembershipsStrings strings;
 
   /// Retry callback.
@@ -114,7 +112,6 @@ class MembershipFreezeBanner extends StatelessWidget {
   /// Last day of the freeze.
   final DateTime until;
 
-  /// Localized labels.
   final MembershipsStrings strings;
 
   /// Optional reason recorded for the freeze.

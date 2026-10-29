@@ -7,8 +7,8 @@ business services. The kernel owns cross-cutting contracts; each service owns on
 business capability end to end — domain rules, application handlers, HTTP API,
 persistence, tests and its client packages.
 
-The repository is intentionally **not a distributed system**. Modules share
-build-time contracts, not runtime infrastructure.
+The repository is **not a distributed system**. Modules share build-time
+contracts, not runtime infrastructure.
 
 ```text
 ┌──────────────────────────────────────────────────────────────────────┐
@@ -60,7 +60,7 @@ platform packages are already consumed by version.
   CI matrices prove.
 
 The trade-off is a larger checkout and a CI workflow that needs to distribute
-platform artifacts. Both are handled in this repository.
+platform artifacts. The build workflow below covers both.
 
 ## Platform kernel
 
@@ -260,8 +260,8 @@ Verified totals on 2026-10-27:
    web artifact, runs `install:local`, tests and builds the library and demo.
 5. **Module mobile matrix** — one job per Flutter package; runs `flutter test`.
 
-The matrices are the proof of independence: a failure in one service does not
-hide the state of the others.
+The matrices make independence visible: a failure in one service does not hide
+the state of the others.
 
 ## Security boundaries
 
@@ -276,8 +276,8 @@ See [SECURITY.md](SECURITY.md) for reporting and deployment guidance.
 
 ## Optional next steps
 
-The current design stops deliberately at independent services. If the product
-needed a connected runtime, the natural additions would be:
+The design stops at independent services. If the product needed a connected
+runtime, the natural additions would be:
 
 1. A gateway/BFF for a unified client origin.
 2. A shared identity provider and token audience strategy.
