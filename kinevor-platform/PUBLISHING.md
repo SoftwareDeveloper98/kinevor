@@ -69,4 +69,5 @@ monorepo. If you switch them to GitHub Packages, create one
 `KINEVOR_PACKAGES_TOKEN` for the repository and add the source to each module's
 NuGet or npm configuration.
 
-Do not reuse or move the `v0.1.0` tag. Publish a patch version for fixes.
+Tag every release. Once packages are published for a tag, treat it as immutable
+and publish a patch version for fixes.
