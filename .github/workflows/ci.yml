@@ -59,7 +59,7 @@ jobs:
         working-directory: kinevor-platform/web
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
           node-version: 24
           cache: npm
@@ -139,7 +139,7 @@ jobs:
         working-directory: ${{ matrix.service }}/web
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
           node-version: 24
       - name: Restore platform Angular package
