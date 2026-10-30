@@ -3,23 +3,7 @@
 All notable changes to Kinevor are documented here. The repository uses a single
 `0.x` line while the platform contracts and module packages evolve together.
 
-## Unreleased
-
-### Security
-
-- Demo APIs now refuse to start outside the Development environment.
-- Removed the committed JWT signing key. The identity demo generates an
-  ephemeral key when `Jwt:SigningKey` is not configured.
-- Login verifies unknown e-mails against a dummy hash, so response timing does
-  not reveal which accounts exist.
-
-### Added
-
-- CodeQL analysis for C# and TypeScript.
-- Dependabot updates for NuGet, npm, pub and GitHub Actions.
-- Flutter format and `flutter analyze` checks in the mobile CI matrix.
-
-## 0.1.0 — 2026-10-27
+## 0.1.0 — 2026-10-30
 
 ### Added
 
@@ -43,8 +27,19 @@ All notable changes to Kinevor are documented here. The repository uses a single
 - Nine Flutter packages with runnable examples.
 - 57 application screenshots covering web, mobile and API surfaces.
 - Monorepo CI: platform build/pack plus backend, web and mobile module matrices.
+- CodeQL analysis for C# and TypeScript.
+- Dependabot updates for NuGet, npm, pub and GitHub Actions.
+- Flutter format and `flutter analyze` checks in the mobile CI matrix.
 - Per-module READMEs, changelogs and publishing guides.
 - Root architecture, security and project documentation.
+
+### Security
+
+- Demo APIs refuse to start outside the Development environment.
+- Removed the committed JWT signing key. The identity demo generates an
+  ephemeral key when `Jwt:SigningKey` is not configured.
+- Login verifies unknown e-mails against a dummy hash, so response timing does
+  not reveal which accounts exist.
 
 ### Verified
 
