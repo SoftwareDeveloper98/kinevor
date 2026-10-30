@@ -28,8 +28,9 @@ public sealed class ApiExceptionMiddleware(RequestDelegate next, ILogger<ApiExce
 
             if (status == StatusCodes.Status500InternalServerError)
             {
+                var method = context.Request.Method.Replace("\r", string.Empty).Replace("\n", string.Empty);
                 var path = context.Request.Path.Value?.Replace("\r", string.Empty).Replace("\n", string.Empty);
-                logger.LogError(exception, "Unhandled exception while processing {Method} {Path}", context.Request.Method, path);
+                logger.LogError(exception, "Unhandled exception while processing {Method} {Path}", method, path);
             }
 
             context.Response.Clear();
