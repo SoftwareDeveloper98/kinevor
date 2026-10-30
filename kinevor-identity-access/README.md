@@ -135,9 +135,10 @@ database and seeds four accounts on first run:
 | Trainer | `trainer@kinevor.demo` | `Kinevor!2026` |
 | Member | `member@kinevor.demo` | `Kinevor!2026` |
 
-The development signing key in `appsettings.json` is for local use only. Supply
-`Jwt:SigningKey` (at least 32 characters), `Jwt:Issuer` and `Jwt:Audience` from
-your secret store in production.
+The demo host generates an ephemeral signing key when `Jwt:SigningKey` is not
+configured, so tokens do not survive a restart. Supply `Jwt:SigningKey` (at
+least 32 characters), `Jwt:Issuer` and `Jwt:Audience` from your secret store
+when you need stable tokens.
 
 ### 3. Run the web demo
 
@@ -267,8 +268,9 @@ job. Modules do not need a published registry to build.
   container.
 - **Constant-shape login errors.** Invalid e-mail and wrong password return the
   same message so callers cannot enumerate accounts.
-- **Development key is explicit.** The demo signing key is prominently documented
-  as local-only; production configuration comes from secrets.
+- **No committed signing key.** The demo host generates an ephemeral key when
+  configuration does not provide one; a production host must use a managed
+  secret.
 
 ## Repository layout
 
@@ -312,10 +314,11 @@ kinevor-identity-access/
 
 ## Security
 
-Do not use the demo signing key or SQLite database in production. Issue a strong
-random signing key, serve the API over HTTPS, restrict CORS to known origins, and
-keep refresh tokens out of logs. The demo exposes Swagger and seeded credentials
-in Development only. Do not commit connection strings, PATs or `.env` files.
+These demo hosts refuse to start outside Development and use SQLite. For a real
+host, issue a strong random signing key, serve the API over HTTPS, restrict CORS
+to known origins, and keep refresh tokens out of logs. Swagger and seeded
+credentials are available in Development only. Do not commit connection
+strings, PATs or `.env` files.
 
 ## License
 

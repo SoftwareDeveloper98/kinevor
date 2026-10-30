@@ -37,7 +37,7 @@ system.
 | Mobile | 9 Flutter packages with runnable examples |
 | Automated tests | **435** — 208 .NET, 99 Angular, 128 Flutter |
 | Screenshots | 57 captured from the running applications |
-| CI | Platform build plus backend, web and mobile module matrices |
+| CI | Platform build, backend/web/mobile matrices, CodeQL and Dependabot |
 
 ## Services
 
@@ -255,10 +255,13 @@ The [CI workflow](.github/workflows/ci.yml) runs on every push and pull request:
    NuGet artifact, then builds and tests independently.
 3. **Module web matrix** — each Angular workspace consumes the built platform
    package, then runs its tests and library/demo builds.
-4. **Module mobile matrix** — each Flutter package runs its widget and golden
-   tests.
+4. **Module mobile matrix** — each Flutter package checks formatting, runs
+   `flutter analyze`, then its widget and golden tests.
 
 That is what the matrices show: every service is verified as a standalone unit.
+A separate [CodeQL workflow](.github/workflows/codeql.yml) scans C# and
+TypeScript, and Dependabot checks NuGet, npm, pub and Actions dependencies every
+week.
 
 ## Design highlights
 
@@ -282,8 +285,8 @@ This is a portfolio reference implementation, deliberately scoped:
 - Payments are simulated; notifications do not call an external e-mail or push
   provider.
 - SQLite is used for zero-setup demos, not for production scale.
-- Demo authentication headers are development-only and must never be enabled in
-  production.
+- Demo authentication headers are development-only; the demo hosts refuse to
+  start outside the Development environment.
 - Package publishing to GitHub Packages is optional and documented in each
   module's `PUBLISHING.md`; it is not required to run the repository.
 

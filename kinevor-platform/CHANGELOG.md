@@ -13,4 +13,4 @@ All notable changes to this project are documented here.
 - `Kinevor.Platform.Api` response envelope and authorization policy helpers.
 - `@softwaredeveloper98/kinevor-platform-web` Angular package with API
   envelopes, authentication, i18n, notices and theme services.
-- GitHub Actions CI and release workflows for NuGet and npm publishing.
+- GitHub Actions CI and documented NuGet and npm publishing steps.

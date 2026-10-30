@@ -30,10 +30,11 @@ The repository is a reference implementation. The following are
 
 - **Demo authentication** — every demo API accepts `X-Demo-Role`,
   `X-Demo-Email`, `X-Demo-Member` and `X-Branch-Id` headers to make screenshots
-  and tests deterministic. This bypasses real authentication by design. Never
-  enable the demo authentication handler in production.
-- **Demo signing keys** — identity demo configuration contains development-only
-  JWT material. Replace it with managed secrets in any real deployment.
+  and tests deterministic. This bypasses real authentication by design. The
+  demo hosts refuse to start outside the Development environment.
+- **Ephemeral signing keys** — the identity demo host generates a random JWT key
+  when `Jwt:SigningKey` is not configured, so tokens do not survive a restart.
+  Configure a managed key if you need stable sessions.
 - **SQLite** — services use local SQLite files for zero-setup demos. They are not
   hardened for multi-tenant or production workloads.
 - **Simulated payments** — no card data is collected and no payment provider is
@@ -56,7 +57,8 @@ If you adapt this code for a real environment:
 - Add rate limiting, request-size limits and audit logging at the edge.
 - Serve over TLS and set HSTS, CSP and other security headers.
 - Review authorization policies per endpoint, not only per controller.
-- Run dependency and container scanning in CI.
+- Keep dependency scanning and CodeQL enabled; add container scanning if you
+  publish images.
 
 ## Repository hygiene
 

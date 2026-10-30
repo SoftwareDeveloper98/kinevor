@@ -26,5 +26,5 @@ and this project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
   system and no remote image dependencies.
 - Playwright screenshot capture with overflow checks for the landing page,
   memberships, timetable, trial form and Swagger UI.
-- GitHub Actions CI and tagged release workflows for NuGet, npm and release
+- GitHub Actions CI and documented tag-based release steps for NuGet, npm and release
   screenshots.

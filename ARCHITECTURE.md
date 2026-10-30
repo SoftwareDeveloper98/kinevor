@@ -265,7 +265,7 @@ the state of the others.
 
 ## Security boundaries
 
-- Demo role headers, seeded credentials and demo signing keys are for local
+- Demo role headers, seeded credentials and the ephemeral JWT key are for local
   development and automated tests only.
 - SQLite files, `.env` files, tokens and build artifacts are ignored.
 - No service stores payment card data; payments are simulated.

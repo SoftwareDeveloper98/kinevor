@@ -19,6 +19,9 @@ public class LoginHandler(
     TimeProvider timeProvider)
     : IRequestHandler<LoginCommand, AuthSessionDto>
 {
+    private const string DummyPasswordHash =
+        "600000.WYAavA/d4rooJPeQ4XOFJQ==.sSvFCVk0v1zH7QknuccrMJFpT4Df28j4KOHavBYynpE=";
+
     /// <summary>Verifies credentials and persists a refresh token.</summary>
     public async Task<AuthSessionDto> Handle(LoginCommand command, CancellationToken ct)
     {
@@ -26,11 +29,13 @@ public class LoginHandler(
 
         var account = await users.GetByEmailAsync(command.Email, ct);
 
-        // Always run the hasher so a missing account costs the same as a wrong password,
-        // preventing e-mail enumeration via timing differences.
-        _ = passwordHasher.Hash(account is null ? command.Password : "kinevor-timing-dummy");
+        // Unknown e-mails are checked against a fixed hash, so both paths run one
+        // PBKDF2 verification and timing cannot reveal which accounts exist.
+        var passwordValid = passwordHasher.Verify(
+            command.Password,
+            account?.PasswordHash ?? DummyPasswordHash);
 
-        if (account is null || !account.IsActive || !passwordHasher.Verify(command.Password, account.PasswordHash))
+        if (account is null || !account.IsActive || !passwordValid)
             throw new AuthenticationFailedException("Invalid e-mail or password.");
 
         if (passwordHasher.NeedsRehash(account.PasswordHash))

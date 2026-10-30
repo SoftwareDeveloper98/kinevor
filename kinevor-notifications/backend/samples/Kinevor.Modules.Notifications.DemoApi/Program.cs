@@ -72,6 +72,9 @@ builder.Services.AddCors(options => options.AddPolicy("web", policy =>
 
 var app = builder.Build();
 
+if (!app.Environment.IsDevelopment())
+    throw new InvalidOperationException("The Kinevor demo API only runs in Development.");
+
 await using (var scope = app.Services.CreateAsyncScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<NotificationsDbContext>();

@@ -28,6 +28,6 @@ All notable changes to this project are documented here. The format follows
 - Flutter example with a demo-member switcher.
 - Vitest, Flutter widget/client and golden tests.
 - Playwright screenshot capture for the web and API.
-- Web, Flutter, API and root documentation plus CI and release workflows.
+- Web, Flutter, API and root documentation plus CI and documented release steps.
 
 [0.1.0]: https://github.com/SoftwareDeveloper98/kinevor/blob/main/kinevor-memberships/CHANGELOG.md

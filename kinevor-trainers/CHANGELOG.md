@@ -19,5 +19,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Flutter package with API client, repository, trainer directory, profile page, theme and strings.
 - Flutter example application for Windows and web.
 - Real web, mobile and Swagger screenshots under `docs/screenshots`.
-- NuGet packing, GitHub Actions CI and tag-based release workflows.
+- NuGet packing, GitHub Actions CI and documented tag-based release steps.
 - MIT license and package documentation.

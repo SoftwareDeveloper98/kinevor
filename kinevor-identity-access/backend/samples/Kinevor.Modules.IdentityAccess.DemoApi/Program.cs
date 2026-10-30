@@ -1,4 +1,5 @@
 using System.Security.Claims;
+using System.Security.Cryptography;
 using System.Text;
 using Kinevor.Modules.IdentityAccess.Api;
 using Kinevor.Modules.IdentityAccess.DemoApi.Authorization;
@@ -23,8 +24,14 @@ builder.Services.AddIdentityEntityFrameworkCore();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<ICurrentUser, HttpCurrentUser>();
 
-var signingKey = builder.Configuration["Jwt:SigningKey"]
-    ?? "kinevor-demo-signing-key-change-in-production-2026";
+var signingKey = builder.Configuration["Jwt:SigningKey"];
+if (string.IsNullOrWhiteSpace(signingKey))
+{
+    // The demo host only starts in Development, so an ephemeral key is safe here.
+    signingKey = Convert.ToBase64String(RandomNumberGenerator.GetBytes(64));
+    builder.Configuration["Jwt:SigningKey"] = signingKey;
+}
+
 if (signingKey.Length < 32)
     throw new InvalidOperationException("Jwt:SigningKey must be at least 32 characters long.");
 
@@ -90,6 +97,9 @@ builder.Services.AddCors(options => options.AddPolicy("web", policy =>
         .AllowAnyMethod()));
 
 var app = builder.Build();
+
+if (!app.Environment.IsDevelopment())
+    throw new InvalidOperationException("The Kinevor demo API only runs in Development.");
 
 await using (var scope = app.Services.CreateAsyncScope())
 {

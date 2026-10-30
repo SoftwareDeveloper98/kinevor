@@ -34,5 +34,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Vitest coverage for the HTTP gateway and dashboard facade.
 - Playwright screenshot automation for the dashboard, alert inbox and Swagger UI.
 - Real web and API screenshots under `docs/screenshots`.
-- NuGet packing, GitHub Actions CI and tag-based release workflows.
+- NuGet packing, GitHub Actions CI and documented tag-based release steps.
 - MIT license and package documentation.
