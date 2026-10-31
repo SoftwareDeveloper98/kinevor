@@ -6,7 +6,6 @@ import { provideHttpClient, withFetch } from '@angular/common/http';
 import {
   provideRouter,
   withInMemoryScrolling,
-  withViewTransitions,
 } from '@angular/router';
 import {
   providePublicSite,
@@ -16,13 +15,14 @@ import { appRoutes } from './app.routes';
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
+    // View transitions are intentionally omitted: in Angular 22 they can stall
+    // initial and client-side navigation, leaving the router outlet empty.
     provideRouter(
       appRoutes,
       withInMemoryScrolling({
         scrollPositionRestoration: 'top',
         anchorScrolling: 'enabled',
       }),
-      withViewTransitions(),
     ),
     provideHttpClient(withFetch()),
     providePublicSite({

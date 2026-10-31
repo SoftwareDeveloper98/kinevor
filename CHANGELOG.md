@@ -46,6 +46,8 @@ All notable changes to Kinevor are documented here. The repository uses a single
   now that every backend targets `net10.0`.
 - Removed the deprecated TypeScript `baseUrl` option; workspace path mappings
   are now relative and no longer rely on a suppression.
+- Public-site demo no longer enables view transitions, which could stall initial
+  and client-side navigation in Angular 22 and leave the router outlet empty.
 
 ### Security
 
