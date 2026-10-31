@@ -1,6 +1,6 @@
 # Kinevor Payments & Billing Web
 
-Angular 21 screens for invoices, simulated payments, refunds and revenue reporting.
+Angular 22 screens for invoices, simulated payments, refunds and revenue reporting.
 
 ## Registry access (optional)
 
@@ -17,7 +17,7 @@ This package is built inside the monorepo. If you publish it to a private regist
 npm install @softwaredeveloper98/kinevor-payments-billing-web
 ```
 
-Peer dependencies: Angular 21, Angular Material 21, RxJS 7.8 and
+Peer dependencies: Angular 22, Angular Material 22, RxJS 7.8 and
 `@softwaredeveloper98/kinevor-platform-web`.
 
 ## Register

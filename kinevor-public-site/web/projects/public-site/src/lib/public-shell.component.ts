@@ -10,9 +10,8 @@ import { PublicSiteFacade } from './public-site.facade';
   template: `
     <header class="site-header">
       <div class="header-inner">
-        <a class="brand" routerLink="/" aria-label="Kinevor home" (click)="closeMenu()">
-          <span class="brand-mark" aria-hidden="true">K</span>
-          <span class="brand-word">KINEVOR</span>
+        <a class="brand" routerLink="/" aria-label="Kinevor Gym home" (click)="closeMenu()">
+          <img class="brand-logo" src="kinevor-logo.png" width="52" height="52" alt="Kinevor Gym">
         </a>
 
         <nav class="desktop-nav" aria-label="Main navigation">
@@ -73,10 +72,9 @@ import { PublicSiteFacade } from './public-site.facade';
     <footer class="site-footer">
       <div class="footer-inner">
         <div class="footer-brand">
-          <div class="footer-lockup">
-            <span class="brand-mark" aria-hidden="true">K</span>
-            <span class="footer-name">KINEVOR</span>
-          </div>
+          <a class="footer-lockup" routerLink="/" aria-label="Kinevor Gym home">
+            <img class="footer-logo" src="kinevor-logo.png" width="52" height="52" alt="Kinevor Gym">
+          </a>
           <p>{{ facade.site()?.tagline ?? 'Built to move. Made to belong.' }}</p>
           <a class="footer-cta" routerLink="/trial">
             Start with a free session
@@ -173,25 +171,12 @@ import { PublicSiteFacade } from './public-site.facade';
       flex: none;
     }
 
-    .brand-mark {
-      display: inline-flex;
-      width: 36px;
-      height: 36px;
-      align-items: center;
-      justify-content: center;
-      border-radius: 10px 10px 10px 3px;
-      background: var(--kx-ember);
-      color: #fff8ef;
-      font-size: 20px;
-      font-weight: 850;
-      letter-spacing: -.08em;
-      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .18);
-    }
-
-    .brand-word, .footer-name {
-      font-size: 15px;
-      font-weight: 800;
-      letter-spacing: .2em;
+    .brand-logo, .footer-logo {
+      width: 52px;
+      height: 52px;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 7px 18px rgba(0, 0, 0, .28);
     }
 
     .load-error {
@@ -337,7 +322,7 @@ import { PublicSiteFacade } from './public-site.facade';
       padding-block: 70px 50px;
     }
 
-    .footer-lockup { display: flex; align-items: center; gap: 11px; }
+    .footer-lockup { display: inline-flex; align-items: center; }
 
     .footer-brand p {
       max-width: 30ch;

@@ -1,6 +1,6 @@
 # Kinevor Trainers
 
-The trainer directory for the Kinevor gym platform: a .NET 9 API, a standalone
+The trainer directory for the Kinevor gym platform: a .NET 10 API, a standalone
 Angular library and demo, and a Flutter package with a runnable example. Every
 layer is independently consumable, and the demo runs locally from this
 monorepo.
@@ -99,7 +99,7 @@ The commands below use PowerShell; on macOS or Linux use forward slashes.
 
 ### Prerequisites
 
-- .NET SDK 10 (the solution uses `.slnx`) and the ASP.NET Core 9 runtime.
+- .NET SDK 10 (the solution uses `.slnx`) and the ASP.NET Core 10 runtime.
 - Node.js 22.12+ and npm 11+.
 - Flutter 3.35+ (the repository is verified with Flutter 3.47.8).
 

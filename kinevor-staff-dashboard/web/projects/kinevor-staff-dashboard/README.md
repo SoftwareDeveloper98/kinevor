@@ -1,6 +1,6 @@
 # @softwaredeveloper98/kinevor-staff-dashboard-web
 
-Standalone Angular 21 library for the Kinevor staff dashboard. It ships the
+Standalone Angular 22 library for the Kinevor staff dashboard. It ships the
 executive overview and alert inbox, a typed HTTP gateway, a signal-based facade,
 an injectable provider and ready-made routes.
 

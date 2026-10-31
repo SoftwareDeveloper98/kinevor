@@ -3,6 +3,7 @@
   "compilerOptions": {
     "outDir": "./dist/out-tsc",
     "strict": true,
+    "ignoreDeprecations": "6.0",
     "baseUrl": ".",
     "paths": {
       "@softwaredeveloper98/kinevor-staff-dashboard-web": ["projects/kinevor-staff-dashboard/src/public-api.ts"]

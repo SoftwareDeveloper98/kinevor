@@ -8,7 +8,7 @@ All notable changes to this project are documented here. The format follows
 
 ### Added
 
-- .NET 9 memberships module with plan catalogue, subscriptions, snapshot
+- .NET 10 memberships module with plan catalogue, subscriptions, snapshot
   benefits, overlap protection, freeze/resume, renewal and cancellation.
 - Staff endpoints for subscription search, current cover, detail and lifecycle
   actions.
@@ -20,7 +20,7 @@ All notable changes to this project are documented here. The format follows
   demo members.
 - Backend test suite covering plans, starts, freezes, renewals, cancellations,
   ownership and the demo host.
-- Angular 21 library `@softwaredeveloper98/kinevor-memberships-web` with plan
+- Angular 22 library `@softwaredeveloper98/kinevor-memberships-web` with plan
   catalogue, overview, detail, lifecycle UI, typed gateway, facade and routes.
 - Angular demo with a demo-member switcher and local platform package workflow.
 - Flutter package `kinevor_memberships` with typed HTTP client, repository,

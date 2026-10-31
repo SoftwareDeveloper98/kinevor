@@ -3,6 +3,7 @@
   "compilerOptions": {
     "outDir": "./dist/out-tsc",
     "strict": true,
+    "ignoreDeprecations": "6.0",
     "baseUrl": ".",
     "paths": {
       "@softwaredeveloper98/kinevor-checkins-access-web": ["projects/kinevor-checkins-access/src/public-api.ts"]

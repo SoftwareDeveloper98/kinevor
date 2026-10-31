@@ -252,7 +252,7 @@
   "memberships.empty": "No memberships found",
   "memberships.cancelTooltip": "Cancel membership",
   "memberships.cancelConfirm": "Cancel this membership?",
-  "memberships.placeholder": "Membership detail view — expand as needed.",
+  "memberships.placeholder": "Select a membership to see the plan, period and remaining days.",
   "classes.title": "Class Schedule",
   "classes.type": "Class Type",
   "classes.allTypes": "All Types",

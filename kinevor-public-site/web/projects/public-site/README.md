@@ -1,6 +1,6 @@
 # @softwaredeveloper98/kinevor-public-site-web
 
-Angular 21 public website for Kinevor gyms. The library ships a typed gateway,
+Angular 22 public website for Kinevor gyms. The library ships a typed gateway,
 facade, provider, routes and five standalone screens: landing, plans, trainers,
 timetable and free-trial capture.
 

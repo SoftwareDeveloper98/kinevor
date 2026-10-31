@@ -11,7 +11,7 @@ const npmMajor = Number(
 );
 if (npmMajor > 0 && npmMajor < 11) {
   console.error(
-    `npm ${npmMajor} cannot resolve the Angular 21 + Vitest peer graph. npm 11 or later is required.\n`
+    `npm ${npmMajor} cannot resolve the Angular 22 + Vitest peer graph. npm 11 or later is required.\n`
       + 'Upgrade with: npm install -g npm@11',
   );
   process.exit(1);

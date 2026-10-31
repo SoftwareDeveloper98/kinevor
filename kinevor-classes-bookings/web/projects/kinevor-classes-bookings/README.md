@@ -19,7 +19,7 @@ This package is built inside the monorepo. If you publish it to a private regist
 npm install @softwaredeveloper98/kinevor-classes-bookings-web
 ```
 
-The package expects Angular 21, Angular Material 21 and RxJS 7.8.
+The package expects Angular 22, Angular Material 22 and RxJS 7.8.
 
 ## Provide the feature
 

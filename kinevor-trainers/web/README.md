@@ -1,6 +1,6 @@
 # Kinevor Trainers Web
 
-Angular 21 library and demo for the Kinevor trainer directory.
+Angular 22 library and demo for the Kinevor trainer directory.
 
 ## Packages
 

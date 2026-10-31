@@ -1,6 +1,6 @@
 # Kinevor Notifications
 
-Notification vertical slice for the Kinevor gym platform: a .NET 9 API and a
+Notification vertical slice for the Kinevor gym platform: a .NET 10 API and a
 standalone Flutter package with a runnable example. The module owns member
 inboxes, delivery records, preferences, device tokens, templates and e-mail
 suppressions. It can be consumed independently, and the demo runs locally
@@ -131,7 +131,7 @@ The commands below use PowerShell; on macOS or Linux use forward slashes.
 
 ### Prerequisites
 
-- .NET SDK 10 (the solution uses `.slnx`) and the ASP.NET Core 9 runtime.
+- .NET SDK 10 (the solution uses `.slnx`) and the ASP.NET Core 10 runtime.
 - Flutter 3.35+ (the repository is verified with Flutter 3.47.8).
 - Node.js is not required to build or test the repository.
 

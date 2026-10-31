@@ -1,6 +1,6 @@
 # Kinevor Staff Dashboard
 
-Operating dashboard for the Kinevor gym platform: a .NET 9 API, a standalone
+Operating dashboard for the Kinevor gym platform: a .NET 10 API, a standalone
 Angular library with a runnable web demo, and a Flutter package with a mobile
 demo host. It gives front-desk and operations staff a branch-scoped view of
 membership, revenue, occupancy, activity and alerts from this monorepo.
@@ -102,7 +102,7 @@ The commands below use PowerShell; on macOS or Linux use forward slashes.
 
 ### Prerequisites
 
-- .NET SDK 10 (the solution uses `.slnx`) and the ASP.NET Core 9 runtime.
+- .NET SDK 10 (the solution uses `.slnx`) and the ASP.NET Core 10 runtime.
 - Node.js 22.12+ and npm 11+.
 - Flutter 3.35+ only when working with the companion mobile package.
 

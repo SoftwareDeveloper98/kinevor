@@ -10,7 +10,7 @@ This package is built inside the monorepo. If you publish it to a private regist
 ```
 
 
-Angular 21 trainer directory components for Kinevor.
+Angular 22 trainer directory components for Kinevor.
 
 ## What is included
 

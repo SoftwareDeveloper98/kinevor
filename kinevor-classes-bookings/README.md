@@ -1,7 +1,7 @@
 # Kinevor Classes & Bookings
 
 Class scheduling, capacity, bookings and waitlists for the Kinevor gym platform,
-split into a .NET 9 API, a standalone Angular library and demo, and a Flutter
+split into a .NET 10 API, a standalone Angular library and demo, and a Flutter
 package with a runnable example. The layers are independent, and the demo runs
 from this monorepo.
 
@@ -60,7 +60,7 @@ clients are thin presentation layers over a typed gateway/repository.
 - Booking, waitlist join, cancellation, automatic waitlist promotion, trainer
   promotion and attendance recording.
 - Upcoming and past member bookings over `GET /api/v1/me/bookings`.
-- Angular 21 standalone components, Material UI, typed gateway/facades, injectable
+- Angular 22 standalone components, Material UI, typed gateway/facades, injectable
   providers, routes and Vitest tests.
 - Flutter: injectable repository/client, schedule, detail and member bookings
   screens, golden tests and a runnable example.
@@ -124,7 +124,7 @@ The commands below use PowerShell; on macOS or Linux use forward slashes.
 
 ### Prerequisites
 
-- .NET SDK 10 (the solution uses `.slnx`) and the ASP.NET Core 9 runtime.
+- .NET SDK 10 (the solution uses `.slnx`) and the ASP.NET Core 10 runtime.
 - Node.js 22.12+ and npm 11+.
 - Flutter 3.35+ (the repository is verified with Flutter 3.47.8).
 

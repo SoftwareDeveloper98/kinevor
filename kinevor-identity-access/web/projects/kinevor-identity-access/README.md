@@ -10,7 +10,7 @@ This package is built inside the monorepo. If you publish it to a private regist
 ```
 
 
-Angular 21 identity and access components for Kinevor.
+Angular 22 identity and access components for Kinevor.
 
 ## What is included
 

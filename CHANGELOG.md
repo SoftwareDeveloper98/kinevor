@@ -31,7 +31,15 @@ All notable changes to Kinevor are documented here. The repository uses a single
 - Dependabot updates for NuGet, npm, pub and GitHub Actions.
 - Flutter format and `flutter analyze` checks in the mobile CI matrix.
 - Per-module READMEs, changelogs and publishing guides.
-- Root architecture, security and project documentation.
+- Root architecture, security, contributing and code-of-conduct documentation.
+- GitHub issue templates for bugs and feature requests.
+- Kinevor Gym brand mark on the README, public site and demo hosts.
+
+### Changed
+
+- Backend projects target `net10.0` with EF Core 10 and ASP.NET Core 10 packages.
+- Angular workspaces and libraries target Angular 22, Angular Material 22 and
+  TypeScript 6.
 
 ### Security
 

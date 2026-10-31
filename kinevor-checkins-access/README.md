@@ -1,7 +1,7 @@
 # Kinevor Check-ins & Access
 
 Check-in, access eligibility, live occupancy and visit history for the Kinevor
-gym platform. The module ships a .NET 9 API, a standalone Angular library with a
+gym platform. The module ships a .NET 10 API, a standalone Angular library with a
 demo, and a Flutter package with a runnable example. Each layer can be used on
 its own, and the demo runs from this monorepo.
 
@@ -141,7 +141,7 @@ The commands below use PowerShell; on macOS or Linux use forward slashes.
 
 ### Prerequisites
 
-- .NET SDK 10 (the solution uses `.slnx`) and the ASP.NET Core 9 runtime.
+- .NET SDK 10 (the solution uses `.slnx`) and the ASP.NET Core 10 runtime.
 - Node.js 22.12+ and npm 11+.
 - Flutter 3.35+ (the repository is verified with Flutter 3.47.8).
 

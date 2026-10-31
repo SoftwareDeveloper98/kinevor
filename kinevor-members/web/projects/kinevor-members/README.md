@@ -20,7 +20,7 @@ This package is built inside the monorepo. If you publish it to a private regist
 npm install @softwaredeveloper98/kinevor-members-web
 ```
 
-The package expects Angular 21, Angular Material 21 and the Kinevor platform
+The package expects Angular 22, Angular Material 22 and the Kinevor platform
 web package.
 
 ## Provide the feature

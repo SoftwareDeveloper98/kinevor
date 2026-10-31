@@ -1,0 +1,43 @@
+name: Feature request
+description: A scoped improvement that fits one module
+title: "[feat] "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Kinevor is a reference implementation. Requests that couple modules
+        together or add production infrastructure are likely out of scope.
+  - type: dropdown
+    id: module
+    attributes:
+      label: Module
+      options:
+        - kinevor-platform
+        - kinevor-identity-access
+        - kinevor-members
+        - kinevor-memberships
+        - kinevor-classes-bookings
+        - kinevor-checkins-access
+        - kinevor-payments-billing
+        - kinevor-notifications
+        - kinevor-trainers
+        - kinevor-staff-dashboard
+        - kinevor-public-site
+        - repository / CI
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What is missing or awkward today?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposal
+      description: Keep it inside one service boundary.
+    validations:
+      required: true

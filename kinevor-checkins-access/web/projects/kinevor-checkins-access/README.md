@@ -19,7 +19,7 @@ This package is built inside the monorepo. If you publish it to a private regist
 npm install @softwaredeveloper98/kinevor-checkins-access-web
 ```
 
-The package expects Angular 21, Angular Material 21, RxJS 7.8 and the Kinevor
+The package expects Angular 22, Angular Material 22, RxJS 7.8 and the Kinevor
 platform web package.
 
 ## Provide the feature

@@ -74,7 +74,7 @@ packages:
 | NuGet | `Kinevor.Platform.Api` | `ApiResponse<T>`, role constants, policy names and `AddKinevorPolicies()` |
 | npm | `@softwaredeveloper98/kinevor-platform-web` | API envelope types, auth gateway/interceptor/guard, i18n with RTL, notices and theme services |
 
-Backend projects target `net9.0`; the Angular package targets Angular 21.
+Backend projects target `net10.0`; the Angular package targets Angular 22.
 
 The platform is versioned (`0.1.0`) and consumed like any other dependency. That
 version boundary is deliberate: it keeps module builds honest about what they
@@ -149,7 +149,7 @@ authentication is a development-only scheme driven by `X-Demo-Role`,
 
 ## Web conventions
 
-All Angular code uses Angular 21 conventions:
+All Angular code uses Angular 22 conventions:
 
 - **No NgModules** — standalone components, `bootstrapApplication`, `inject()`.
 - **Signals** — component state and derived values are signals and computed
@@ -219,7 +219,7 @@ The module `nuget.config` points to
 `../../kinevor-platform/web/dist/kinevor-platform-web`. Both paths are relative
 to the module and work on Windows, Linux and macOS.
 
-Use npm 11 or later. npm 10's peer resolver crashes on the Angular 21 + Vitest
+Use npm 11 or later. npm 10's peer resolver crashes on the Angular 22 + Vitest
 dependency graph, so `install:local` checks the npm major version and stops with
 an upgrade hint instead of failing deep inside Arborist.
 

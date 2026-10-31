@@ -1,6 +1,6 @@
 # @softwaredeveloper98/kinevor-memberships-web
 
-Angular 21 member-facing membership UI for Kinevor. The package ships a plan
+Angular 22 member-facing membership UI for Kinevor. The package ships a plan
 catalogue, a current-membership dashboard with history, and a detail page with
 freeze, resume, renew and cancel actions.
 
@@ -19,7 +19,7 @@ This package is built inside the monorepo. If you publish it to a private regist
 npm install @softwaredeveloper98/kinevor-memberships-web
 ```
 
-The package peers on Angular 21, Angular Material 21 and
+The package peers on Angular 22, Angular Material 22 and
 `@softwaredeveloper98/kinevor-platform-web`.
 
 ## Register

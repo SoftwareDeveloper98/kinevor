@@ -32,7 +32,7 @@ flowchart LR
   Modules --> Web
 ```
 
-Backend projects target `net9.0`; the Angular library targets Angular 21.
+Backend projects target `net10.0`; the Angular library targets Angular 22.
 
 ## Requirements
 
