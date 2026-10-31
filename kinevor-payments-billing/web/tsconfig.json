@@ -3,10 +3,8 @@
   "compilerOptions": {
     "outDir": "./dist/out-tsc",
     "strict": true,
-    "ignoreDeprecations": "6.0",
-    "baseUrl": ".",
     "paths": {
-      "@softwaredeveloper98/kinevor-payments-billing-web": ["projects/kinevor-payments-billing/src/public-api.ts"]
+      "@softwaredeveloper98/kinevor-payments-billing-web": ["./projects/kinevor-payments-billing/src/public-api.ts"]
     },
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,

@@ -40,6 +40,12 @@ All notable changes to Kinevor are documented here. The repository uses a single
 - Backend projects target `net10.0` with EF Core 10 and ASP.NET Core 10 packages.
 - Angular workspaces and libraries target Angular 22, Angular Material 22 and
   TypeScript 6.
+- Demo apps use a 256 px logo asset; the full-size brand image remains in
+  `docs/branding/` for the README and social preview.
+- Removed obsolete `RollForward=LatestMajor` settings from demo and test hosts
+  now that every backend targets `net10.0`.
+- Removed the deprecated TypeScript `baseUrl` option; workspace path mappings
+  are now relative and no longer rely on a suppression.
 
 ### Security
 
@@ -48,8 +54,8 @@ All notable changes to Kinevor are documented here. The repository uses a single
   ephemeral key when `Jwt:SigningKey` is not configured.
 - Login verifies unknown e-mails against a dummy hash, so response timing does
   not reveal which accounts exist.
-- Pinned SQLitePCLRaw 2.1.14 to clear the high-severity advisory
-  GHSA-2m69-gcr7-jv3q in the SQLite-backed demo hosts and tests.
+- Pinned SQLitePCLRaw 2.1.14 (SQLite 3.54.0) to clear the high-severity
+  advisory GHSA-2m69-gcr7-jv3q in the SQLite-backed demo hosts and tests.
 
 ### Verified
 

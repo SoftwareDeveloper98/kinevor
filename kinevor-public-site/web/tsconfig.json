@@ -3,10 +3,8 @@
   "compilerOptions": {
     "outDir": "./dist/out-tsc",
     "strict": true,
-    "ignoreDeprecations": "6.0",
-    "baseUrl": ".",
     "paths": {
-      "@softwaredeveloper98/kinevor-public-site-web": ["projects/public-site/src/public-api.ts"]
+      "@softwaredeveloper98/kinevor-public-site-web": ["./projects/public-site/src/public-api.ts"]
     },
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,

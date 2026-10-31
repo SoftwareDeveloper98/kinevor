@@ -1,7 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
     <IsPackable>false</IsPackable>
-    <RollForward>LatestMajor</RollForward>
     <RootNamespace>Kinevor.Modules.IdentityAccess.DemoApi</RootNamespace>
     <UserSecretsId>kinevor-identity-access-demo-api</UserSecretsId>
   </PropertyGroup>
