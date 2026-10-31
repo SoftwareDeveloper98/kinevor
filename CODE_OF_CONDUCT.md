@@ -46,7 +46,8 @@ an individual is officially representing the project in public spaces.
 
 ## Enforcement
 
-Report incidents privately to the maintainer through the
+Report incidents privately to the maintainer at
+[georgevictorkamal@gmail.com](mailto:georgevictorkamal@gmail.com) or through the
 [George Victor Kamal GitHub profile](https://github.com/georgevictorkamal).
 Use the repository's security-advisory flow only for vulnerabilities. All
 complaints will be reviewed and investigated promptly and fairly.

@@ -48,6 +48,8 @@ All notable changes to Kinevor are documented here. The repository uses a single
   ephemeral key when `Jwt:SigningKey` is not configured.
 - Login verifies unknown e-mails against a dummy hash, so response timing does
   not reveal which accounts exist.
+- Pinned SQLitePCLRaw 2.1.14 to clear the high-severity advisory
+  GHSA-2m69-gcr7-jv3q in the SQLite-backed demo hosts and tests.
 
 ### Verified
 

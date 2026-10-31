@@ -170,8 +170,8 @@ kinevor/
 
 ### Prerequisites
 
-- **.NET SDK 10** to build and run the `net10.0` projects; no separate .NET 9
-  runtime is required.
+- **.NET SDK 10** to build and run the `net10.0` projects; the SDK includes the
+  ASP.NET Core runtime they need.
 - **Node.js 22.22.3+** and npm 11+ (Node 24 LTS recommended)
 - **Flutter 3.35+** for the mobile packages
 
