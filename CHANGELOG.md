@@ -31,7 +31,21 @@ All notable changes to Kinevor are documented here. The repository uses a single
 - Dependabot updates for NuGet, npm, pub and GitHub Actions.
 - Flutter format and `flutter analyze` checks in the mobile CI matrix.
 - Per-module READMEs, changelogs and publishing guides.
-- Root architecture, security and project documentation.
+- Root architecture, security, contributing and code-of-conduct documentation.
+- GitHub issue templates for bugs and feature requests.
+- Kinevor Gym brand mark on the README, public site and demo hosts.
+
+### Changed
+
+- Backend projects target `net10.0` with EF Core 10 and ASP.NET Core 10 packages.
+- Angular workspaces and libraries target Angular 22, Angular Material 22 and
+  TypeScript 6.
+- Demo apps use a 256 px logo asset; the full-size brand image remains in
+  `docs/branding/` for the README and social preview.
+- Removed obsolete `RollForward=LatestMajor` settings from demo and test hosts
+  now that every backend targets `net10.0`.
+- Removed the deprecated TypeScript `baseUrl` option; workspace path mappings
+  are now relative and no longer rely on a suppression.
 
 ### Security
 
@@ -40,6 +54,8 @@ All notable changes to Kinevor are documented here. The repository uses a single
   ephemeral key when `Jwt:SigningKey` is not configured.
 - Login verifies unknown e-mails against a dummy hash, so response timing does
   not reveal which accounts exist.
+- Pinned SQLitePCLRaw 2.1.14 (SQLite 3.54.0) to clear the high-severity
+  advisory GHSA-2m69-gcr7-jv3q in the SQLite-backed demo hosts and tests.
 
 ### Verified
 

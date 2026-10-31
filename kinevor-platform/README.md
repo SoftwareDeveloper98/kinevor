@@ -32,12 +32,12 @@ flowchart LR
   Modules --> Web
 ```
 
-Backend projects target `net9.0`; the Angular library targets Angular 21.
+Backend projects target `net10.0`; the Angular library targets Angular 22.
 
 ## Requirements
 
-- .NET SDK 9.0 or 10.0.
-- Node.js 22.12+ or 24+ and npm 11 or later.
+- .NET SDK 10.0.
+- Node.js 22.22.3+ and npm 11 or later (Node 24 LTS recommended).
 - No registry credentials are needed inside the monorepo; modules consume the
   local platform build.
 

@@ -60,7 +60,7 @@ import { IdentityAccessFacade } from './identity-access.facade';
         </div>
 
         <div class="story-foot">
-          <span class="logo-mark" aria-hidden="true">K</span>
+          <img class="logo-mark" src="kinevor-logo.png" width="30" height="30" alt="">
           <span>Kinevor Gym Platform</span>
           <span class="demo-pill">Demo host</span>
         </div>

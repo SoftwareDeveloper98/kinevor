@@ -1,6 +1,6 @@
 # @softwaredeveloper98/kinevor-platform-web
 
-Shared Angular 21 services for Kinevor feature modules: API response envelopes,
+Shared Angular 22 services for Kinevor feature modules: API response envelopes,
 authentication, internationalization, notices and theme state.
 
 ## Install
@@ -33,5 +33,5 @@ export const appConfig = {
 };
 ```
 
-The package requires Angular 21, Angular Material 21 and RxJS 7.8 as peer
+The package requires Angular 22, Angular Material 22 and RxJS 7.8 as peer
 dependencies. Authentication storage and API hosts remain application concerns.

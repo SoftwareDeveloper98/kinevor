@@ -3,9 +3,8 @@
   "compilerOptions": {
     "outDir": "./dist/out-tsc",
     "strict": true,
-    "baseUrl": ".",
     "paths": {
-      "@softwaredeveloper98/kinevor-classes-bookings-web": ["projects/kinevor-classes-bookings/src/public-api.ts"]
+      "@softwaredeveloper98/kinevor-classes-bookings-web": ["./projects/kinevor-classes-bookings/src/public-api.ts"]
     },
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,

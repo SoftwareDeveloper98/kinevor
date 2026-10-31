@@ -1,6 +1,6 @@
 # Kinevor Trainers Backend
 
-.NET 9 trainer directory module, EF Core persistence, demo API and tests.
+.NET 10 trainer directory module, EF Core persistence, demo API and tests.
 
 ## Projects
 

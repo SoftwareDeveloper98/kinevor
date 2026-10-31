@@ -1,0 +1,60 @@
+name: Bug report
+description: Something does not work as documented
+title: "[bug] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form for defects in a documented demo or test.
+        Vulnerabilities go through the Security tab, not here.
+  - type: dropdown
+    id: module
+    attributes:
+      label: Module
+      options:
+        - kinevor-platform
+        - kinevor-identity-access
+        - kinevor-members
+        - kinevor-memberships
+        - kinevor-classes-bookings
+        - kinevor-checkins-access
+        - kinevor-payments-billing
+        - kinevor-notifications
+        - kinevor-trainers
+        - kinevor-staff-dashboard
+        - kinevor-public-site
+        - repository / CI
+    validations:
+      required: true
+  - type: dropdown
+    id: surface
+    attributes:
+      label: Surface
+      options:
+        - Backend API
+        - Angular web
+        - Flutter mobile
+        - Documentation
+        - CI
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behaviour
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behaviour
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      placeholder: Commands, URLs and seeded data you used.
+    validations:
+      required: true

@@ -1,11 +1,15 @@
 # Kinevor
 
+<p align="center">
+  <img src="docs/branding/kinevor-gym-logo.png" alt="Kinevor Gym" width="280">
+</p>
+
 **A modular gym-operations platform in one repository.**
 
 [![CI](https://github.com/SoftwareDeveloper98/kinevor/actions/workflows/ci.yml/badge.svg)](https://github.com/SoftwareDeveloper98/kinevor/actions/workflows/ci.yml)
 [![Release](https://img.shields.io/github/v/release/SoftwareDeveloper98/kinevor?label=release)](https://github.com/SoftwareDeveloper98/kinevor/releases/latest)
-[![.NET](https://img.shields.io/badge/.NET-9-512BD4?logo=dotnet)](https://dotnet.microsoft.com/)
-[![Angular](https://img.shields.io/badge/Angular-21-DD0031?logo=angular)](https://angular.dev/)
+[![.NET](https://img.shields.io/badge/.NET-10-512BD4?logo=dotnet)](https://dotnet.microsoft.com/)
+[![Angular](https://img.shields.io/badge/Angular-22-DD0031?logo=angular)](https://angular.dev/)
 [![Flutter](https://img.shields.io/badge/Flutter-3.35%2B-02569B?logo=flutter)](https://flutter.dev/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
@@ -32,8 +36,8 @@ system.
 | | |
 | --- | --- |
 | Business modules | 10, plus a shared platform kernel |
-| Backend | 10 ASP.NET Core 9 APIs, EF Core 9, SQLite, MediatR |
-| Web | 9 Angular 21 libraries with runnable demos |
+| Backend | 10 ASP.NET Core 10 APIs, EF Core 10, SQLite, MediatR |
+| Web | 9 Angular 22 libraries with runnable demos |
 | Mobile | 9 Flutter packages with runnable examples |
 | Automated tests | **435** — 208 .NET, 99 Angular, 128 Flutter |
 | Screenshots | 57 captured from the running applications |
@@ -128,8 +132,8 @@ if the system ever needs one.
 
 | Layer | Stack |
 | --- | --- |
-| Backend | ASP.NET Core 9 (`net9.0`), EF Core 9, SQLite, MediatR 12, JWT bearer, PBKDF2 password hashing, Swashbuckle, xUnit and `WebApplicationFactory` |
-| Web | Angular 21 with standalone components, signals, typed gateways/facades, Angular Material and Vitest |
+| Backend | ASP.NET Core 10 (`net10.0`), EF Core 10, SQLite, MediatR 12, JWT bearer, PBKDF2 password hashing, Swashbuckle, xUnit and `WebApplicationFactory` |
+| Web | Angular 22 with standalone components, signals, typed gateways/facades, Angular Material and Vitest |
 | Mobile | Flutter 3.35+ (verified with 3.47.8), Material 3, typed HTTP client and repository, widget and golden tests |
 | Tooling | GitHub Actions matrices, NuGet, npm, Dart/Flutter, Mermaid diagrams |
 
@@ -152,10 +156,13 @@ kinevor/
 ├── kinevor-trainers/           backend/ · web/ · mobile/ · docs/
 ├── kinevor-staff-dashboard/    backend/ · web/ · mobile/ · docs/
 ├── kinevor-public-site/        backend/ · web/ · docs/
+├── docs/branding/              Kinevor Gym logo
 ├── docs/screenshots/           portfolio showcase images
 ├── .github/workflows/ci.yml    platform jobs + three module matrices
 ├── ARCHITECTURE.md             design and conventions
 ├── SECURITY.md                 security policy and demo caveats
+├── CONTRIBUTING.md             how to build, test and open a change
+├── CODE_OF_CONDUCT.md          community standards
 └── CHANGELOG.md                release history
 ```
 
@@ -163,10 +170,10 @@ kinevor/
 
 ### Prerequisites
 
-- .NET SDK 10 (the projects target `net9.0`; the ASP.NET Core 9 runtime is
-  required)
-- Node.js 22.12+ and npm 11+ (Node 24 LTS recommended)
-- Flutter 3.35+ for the mobile packages
+- **.NET SDK 10** to build and run the `net10.0` projects; the SDK includes the
+  ASP.NET Core runtime they need.
+- **Node.js 22.22.3+** and npm 11+ (Node 24 LTS recommended)
+- **Flutter 3.35+** for the mobile packages
 
 ### 1. Build the platform artifacts once
 
@@ -294,6 +301,8 @@ This is a portfolio reference implementation, deliberately scoped:
 
 - [Architecture and conventions](ARCHITECTURE.md)
 - [Security policy](SECURITY.md)
+- [Contributing](CONTRIBUTING.md)
+- [Code of conduct](CODE_OF_CONDUCT.md)
 - [Changelog](CHANGELOG.md)
 - Module READMEs: [platform](kinevor-platform/README.md) ·
   [identity](kinevor-identity-access/README.md) ·
@@ -306,6 +315,15 @@ This is a portfolio reference implementation, deliberately scoped:
   [trainers](kinevor-trainers/README.md) ·
   [dashboard](kinevor-staff-dashboard/README.md) ·
   [public site](kinevor-public-site/README.md)
+
+## Author
+
+**George Victor Kamal** — [github.com/georgevictorkamal](https://github.com/georgevictorkamal)
+
+The public repository and package namespace are
+[`SoftwareDeveloper98/kinevor`](https://github.com/SoftwareDeveloper98/kinevor)
+(`@softwaredeveloper98/*` on npm). Copyright is held by the author; that GitHub
+account is the publishing and CI home.
 
 ## License
 

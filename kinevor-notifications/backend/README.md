@@ -1,6 +1,6 @@
 # Kinevor Notifications Backend
 
-.NET 9 notification module, EF Core persistence, demo API and tests.
+.NET 10 notification module, EF Core persistence, demo API and tests.
 
 ## Projects
 

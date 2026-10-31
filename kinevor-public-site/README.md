@@ -2,7 +2,7 @@
 
 A public website for Kinevor: a coach-led strength and movement gym with three
 New York locations. This module contains a tested .NET module and demo API for
-public content and lead capture, plus an Angular 21 component library and
+public content and lead capture, plus an Angular 22 component library and
 reference website.
 
 The experience is editorial rather than templated: local typography, warm paper
@@ -65,8 +65,8 @@ web/
 docs/screenshots/                               Captured product screenshots
 ```
 
-The .NET projects target `net9.0`; `global.json` pins the .NET 10 SDK with
-feature roll-forward. The Angular workspace uses Angular 21, standalone
+The .NET projects target `net10.0`; `global.json` pins the .NET 10 SDK with
+feature roll-forward. The Angular workspace uses Angular 22, standalone
 components, signals and OnPush change detection.
 
 ## Quick Start

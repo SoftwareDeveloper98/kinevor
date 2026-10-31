@@ -1,7 +1,7 @@
 # Kinevor Payments & Billing
 
 Invoices, simulated payments, refunds and revenue reporting for the Kinevor gym
-platform, delivered as a .NET 9 API, a standalone Angular library and demo, and
+platform, delivered as a .NET 10 API, a standalone Angular library and demo, and
 a Flutter package with a runnable example. The layers are independent, and the
 demo runs from this monorepo.
 
@@ -136,7 +136,7 @@ The commands below use PowerShell; on macOS or Linux use forward slashes.
 
 ### Prerequisites
 
-- .NET SDK 10.0.100+ (pinned by `global.json`) and an ASP.NET Core 9.0+ runtime.
+- .NET SDK 10.0.100+ (pinned by `global.json`) and an ASP.NET Core 10.0+ runtime.
 - Node.js 22.12+ and npm 11+.
 - Flutter 3.35+ (the repository is verified with Flutter 3.47.8).
 

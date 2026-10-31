@@ -19,7 +19,7 @@ and this project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
   role and deterministic content seeded relative to the current date.
 - Domain tests and HTTP contract tests covering content, schedule filtering,
   trial validation, duplicate prevention and lead access.
-- Angular 21 standalone component library with a typed HTTP gateway, shared
+- Angular 22 standalone component library with a typed HTTP gateway, shared
   signal facade, provider, route collection and five responsive screens:
   landing, memberships, coaches, timetable and free trial.
 - Reference demo application with local Sora typography, a complete visual

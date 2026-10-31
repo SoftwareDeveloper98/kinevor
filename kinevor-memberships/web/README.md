@@ -1,6 +1,6 @@
 # Kinevor Memberships web
 
-Angular 21 workspace for the memberships module: a publishable library in
+Angular 22 workspace for the memberships module: a publishable library in
 `projects/kinevor-memberships` and a standalone demo in `projects/demo`.
 
 ## Library

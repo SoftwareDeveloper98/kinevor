@@ -9,9 +9,10 @@ This is a reference implementation. Security fixes are applied to the current
 
 Please report security issues **privately**:
 
-1. Use GitHub's **Report a vulnerability** flow on the repository's Security tab
+1. Use GitHub's **Report a vulnerability** flow on
+   [SoftwareDeveloper98/kinevor](https://github.com/SoftwareDeveloper98/kinevor)
    (private security advisory), or
-2. Contact the repository owner directly through their GitHub profile.
+2. Contact the author, [George Victor Kamal](https://github.com/georgevictorkamal).
 
 Do not open a public issue for a vulnerability. Include:
 

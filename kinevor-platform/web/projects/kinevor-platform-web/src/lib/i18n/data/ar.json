@@ -252,7 +252,7 @@
   "memberships.empty": "لم يتم العثور على عضويات",
   "memberships.cancelTooltip": "إلغاء العضوية",
   "memberships.cancelConfirm": "هل تريد إلغاء هذه العضوية؟",
-  "memberships.placeholder": "عرض تفاصيل العضوية — يمكن توسيعه لاحقًا.",
+  "memberships.placeholder": "اختر عضوية لعرض الخطة والفترة والأيام المتبقية.",
   "classes.title": "جدول الحصص",
   "classes.type": "نوع الحصة",
   "classes.allTypes": "كل الأنواع",
